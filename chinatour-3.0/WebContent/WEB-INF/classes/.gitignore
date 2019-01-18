@@ -1,0 +1,12 @@
+/applicationContext-mvc.xml
+/applicationContext-shiro.xml
+/applicationContext.xml
+/com/
+/ehcache.xml
+/ia.properties
+/intuit-config.xml
+/log4j.properties
+/logback.xml
+/mybatis-config.xml
+/resources.properties
+/settings.xml
