@@ -492,6 +492,7 @@
 	<select id="findAirPepole" resultType="com.chinatour.entity.SupplierPriceForOrder" parameterType="com.chinatour.entity.SupplierPriceForOrder">
 		SELECT
 			SUM(s.Quantity) as Quantity,
+			SUM(s.Net) as Net,
 			SUM(s.OperatorFee) as OperatorFee,
 			SUM(s.Amount) as Amount,
 			SUM(s.Charge) as Charge,
@@ -568,6 +569,12 @@
 			</if>
 			<if test="endingDate != null">
 				AND s.date <![CDATA[<=]]> #{endingDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalBeginningDate != null">
+				AND s.arriveDate <![CDATA[>=]]> #{arrivalBeginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalEndingDate != null">
+				AND s.arriveDate <![CDATA[<=]]> #{arrivalEndingDate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="uploadUrl!= null">
 				AND s.uploadUrl=#{uploadUrl,jdbcType=VARCHAR}
