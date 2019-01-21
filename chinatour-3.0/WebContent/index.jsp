@@ -268,10 +268,10 @@
         	<ul class="comany_cont">
                 <li>
                 	<p class="company_1">(AUS) Sydney office</p>
-                    <p class="company_2"><span>Telephone:</span>  +61(2)8747-8687</p>
+                    <p class="company_2"><span>Telephone:</span>  1300 998 259</p>
                     <p class="company_2"><span>Fax:</span>        +61(2)8747-8687</p>
                     <p class="company_2"><span>Email:</span>      au@intertrips.com</p>
-                    <p class="company_2"><span>Address:</span>    502, 139 Macquarie St Sydney 2000</p>
+                    <p class="company_2"><span>Address:</span>    Level 8, 66 Goulburn St Sydney NSW 2000</p>
                 </li>
             	<li>
                 	<p class="company_1">(USA) Headquarter Office</p>
