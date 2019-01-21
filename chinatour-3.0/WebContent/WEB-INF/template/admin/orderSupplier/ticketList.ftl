@@ -172,7 +172,8 @@
 													<input type="text" size="14" id="search_agentName" placeholder="Agent..." />
 													<input type="text" size="14" id="search_dept" placeholder="Dept..." />
 													<input type="text" size="14" id="search_ticketNo" placeholder="TicketNo..." />
-													<input type="text" size="14" id="search_airLine" placeholder="AirLine..." /><br/>
+													<input type="text" size="14" id="search_airLine" placeholder="AirLine..." />
+													<input type="text" size="14" id="search_userName" placeholder="User Name..." /><br/>
 													<input type="text" size="14" id="search_Arc" placeholder="ARC..." />
 													<input type="text" size="14" id="search_name" placeholder="Name" />
 													<input type="text" size="14" id="search_card" placeholder="Card" />
@@ -181,7 +182,6 @@
 													<input type="text" size="14" id="search_orderNo" placeholder="Order Number" />
 													<input type="text" size="14" id="search_locator" placeholder="Locator" />
 													
-													<input type="hidden" size="14" id="search_userName" placeholder="Op..." />
 													<input type="hidden" size="14" id="search_charge" placeholder="Charge..." />
 													<input type="hidden" size="14" id="search_amount" placeholder="Selling..." />
 													<input type="hidden" size="14" id="search_operatorFee" placeholder="Net..." />
@@ -207,7 +207,8 @@
 		                                    	<th>Date</th>
 			                                  	<th>Qty.</th>
 			                                  	<th>AirLine</th>
-			                                  	<th>PNR</th>
+			                                  	<!-- <th>PNR</th> -->
+			                                  	<th>Net</th>
 			                                  	<th>ARC</th>
 			                                  	<th>Total</th>
 			                                  	<th>Bill/Credit</th>
@@ -364,6 +365,7 @@
 					data.InvoiceNum=$("#search_InvoiceNum").val();
 					data.TicketType=$("#ticketType").val();
 					data.Locator=$("#search_locator").val();
+					data.userName=$("#search_userName").val();
 				}
             },
             "columns": [
@@ -372,7 +374,8 @@
             	{ "data": "date"},
                 { "data": "quantity"},
                 { "data": "airline"},
-                { "data": "flightPnr"},
+                /*{ "data": "flightPnr"},*/
+                { "data": "net"},
                 { "data": "tempValue06"},
                 { "data": "operatorFee"},
                 { "data": "supplierPriceForOrderId",

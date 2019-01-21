@@ -2538,6 +2538,7 @@ public class SupplierPriceController extends BaseController {
 		airticketItemsService.batchSave(airticketItemsList);
 		supplierPriceForOrder.setTicketNo(str);
 		supplierPriceForOrder.setOperatorFee(total);
+		supplierPriceForOrder.setNet(net);
 		supplierPriceForOrder.setAmount(selling);
 		supplierPriceForOrder.setCharge(charge);
 		supplierPriceForOrder.setUserId(admin.getId());
@@ -2643,6 +2644,7 @@ public class SupplierPriceController extends BaseController {
 			}
 		}
 		supplierPriceForOrder.setTicketNo(str);
+		supplierPriceForOrder.setNet(net);
 		supplierPriceForOrder.setOperatorFee(total);
 		supplierPriceForOrder.setAmount(selling);
 		supplierPriceForOrder.setCharge(charge);

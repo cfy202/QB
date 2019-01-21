@@ -106,6 +106,9 @@
 			<if test="charge!= null">
 				Charge,
 			</if>
+			<if test="net!= null">
+				Net,
+			</if>
 			<if test="operatorFee!= null">
 				OperatorFee,
 			</if>
@@ -222,6 +225,9 @@
 			<if test="charge != null">
 				#{charge,jdbcType=DECIMAL},
 			</if>
+			<if test="net != null">
+				#{net,jdbcType=DECIMAL},
+			</if>
 			<if test="operatorFee != null">
 				#{operatorFee,jdbcType=DECIMAL},
 			</if>
@@ -324,7 +330,7 @@
 	
 	<sql id="findForPage_sql">
 		SELECT
-			s.SupplierpricefororderId, s.Quantity, s.InvoiceNo,s. Airline, s.TicketNo,s.Charge,s.Card,s.Type,s.AgentId,s.approveStatus,s.deptId,
+			s.SupplierpricefororderId, s.Quantity, s.InvoiceNo,s. Airline, s.TicketNo,s.Charge,s.Card,s.Type,s.AgentId,s.approveStatus,s.deptId,s.Net,
 		s.OperatorFee,s.Amount,s.Remark,s.RemarkOfAgent,s.agency,s.AccRemarkOfOp,s.rateOfCurrencyId,s.UserId,s.UserName,s.CreateDate,s.Date,s.ArriveDate,v.name as venderName,
 		s.UploadUrl,s.FlightPnr,s.IsDel,za.username as agentName,d.deptName,s.tempValue01,s.tempValue02,s.tempValue03,s.tempValue04,s.tempValue05,s.tempValue06,
 		s.TicketType,s.System,s.InvoiceNum,s.Locator
@@ -905,6 +911,9 @@
 			</if>
 			<if test="charge != null">
 				charge=#{charge,jdbcType=DECIMAL},
+			</if>
+			<if test="net != null">
+				net=#{net,jdbcType=DECIMAL},
 			</if>
 			<if test="operatorFee != null">
 				operatorFee=#{operatorFee,jdbcType=DECIMAL},

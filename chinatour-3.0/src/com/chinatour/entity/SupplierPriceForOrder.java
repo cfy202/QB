@@ -33,6 +33,8 @@ public class SupplierPriceForOrder extends BaseUuidEntity {
 	@JsonProperty
 	private BigDecimal charge; //定该机票的实际费用
 	@JsonProperty
+	private BigDecimal net; //定该机票的实际费用
+	@JsonProperty
 	private BigDecimal operatorFee; //定该机票的实际费用
 	@JsonProperty
 	private BigDecimal amount;		//agent应付的费用
