@@ -89,7 +89,9 @@
 													</span>
 												</td>
 												<td width="37%">
-													<input  name="airline" value="${supplierPriceForOrder.airline}" class="form-control input-group1 peer">
+													<select id="airlinelist" class="select2 peer" name="airline">
+														<option value="">--Select--</option>
+													</select>
 												</td>
 												<td width="13%">
 													<span>
@@ -484,7 +486,15 @@
 <script src="[@spring.url '/resources/js/fuelux/loader.js'/]" type="text/javascript"></script>
 <script src="[@spring.url '/resources/js/jquery.parsley/parsley.js'/]" type="text/javascript"></script>
 	<script type="text/javascript">
+		var airline=["CA","MU","CZ","AA","DL","AS","UA","MF","CX","JL","HX","BR","HU","AC","SQ","NZ","QF","OZ","DI","MH","VN","CI","TG","BA","AZ","WS","KE","4O","TK","B6","3U","SQ","EK","CM","PR","NH","CM","US","VS","WN","EY","QR","AF"];
 		$(document).ready(function(){
+			for (var i=0;i<airline.length;i++){
+				if("${supplierPriceForOrder.airline}" == airline[i]){
+					$("#airlinelist").append('<option value="'+airline[i]+'" selected>'+airline[i]+'</option>');
+				}else{
+					$("#airlinelist").append('<option value="'+airline[i]+'">'+airline[i]+'</option>');
+				}
+			}
 			$("#scheduleOfArriveTimeInput").datepicker({dateFormat: 'yy-mm-dd',changeYear: true,changeMonth: true, numberOfMonths: 1, minDate: 1 });
 			$("#arriveDate").datepicker({dateFormat: 'yy-mm-dd',changeYear: true,changeMonth: true, numberOfMonths: 1, minDate: 1 });
 			//initialize the javascript
