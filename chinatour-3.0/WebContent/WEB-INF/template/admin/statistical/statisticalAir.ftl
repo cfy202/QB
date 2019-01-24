@@ -61,13 +61,23 @@
 					    </div>
 					</div>
 					<div class="stats_bar">
-					    <div class="butpro butstyle flat" style="height:auto;margin-left:-49%">
+					    <div class="butpro butstyle flat" style="height:auto;margin-right:25%">
 					        <div class="stat">
 					        	<div><span class="spk2">
 					        		<canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: center;" width="74" height="16"></canvas>
 					        	</span></div>
 					        	<span style="font-size:12px;">
 					        		<a href="[@spring.url '/admin/statistical/venderStatistical.jhtml'/]"> <font size="3"><b>Vender Statistics</b></font> </a> 
+					        	</span>
+					        </div>
+					    </div>
+					    <div class="butpro butstyle flat" style="height:auto;margin-left:10%">
+					        <div class="stat">
+					        	<div><span class="spk2">
+					        		<canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: center;" width="74" height="16"></canvas>
+					        	</span></div>
+					        	<span style="font-size:12px;">
+					        		<a href="[@spring.url '/admin/statistical/airlineStatistical.jhtml'/]"> <font size="3"><b>Airline Statistics</b></font> </a> 
 					        	</span>
 					        </div>
 					    </div>

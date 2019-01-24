@@ -1230,8 +1230,17 @@
 			v.name as venderName,
 			d.deptName,
 			</if>
+			<if test="type != null and type==3">
+			d.deptName,
+			s.airline,
+			SUM(IF(TempValue04='B' AND TempValue05='I', Quantity, 0)) as BI,
+			SUM(IF(TempValue04='B'AND TempValue05='D', Quantity, 0)) as BD ,
+			SUM(IF(TempValue04='E' AND TempValue05='I', Quantity, 0)) as EI,
+			SUM(IF(TempValue04='E'AND TempValue05='D', Quantity, 0)) as ED,
+			</if>
 			s.tempValue01,
 			SUM(s.Quantity) as Quantity,
+			SUM(s.Net) as Net,
 			SUM(s.OperatorFee) as OperatorFee,
 			SUM(s.Amount) as Amount,
 			SUM(s.Charge) as Charge,
@@ -1246,6 +1255,9 @@
 			<if test="type != null and type==2">
 				,vender v,dept d
 			</if>
+			<if test="type != null and type==3">
+				,dept d
+			</if>
 		WHERE
 			s.IsDel=0
 			<if test="type != null and type==0">
@@ -1257,6 +1269,9 @@
 			</if>
 			<if test="type != null and type==2">
 				AND s.Agency=v.venderId
+				AND d.deptId=s.deptId
+			</if>
+			<if test="type != null and type==3">
 				AND d.deptId=s.deptId
 			</if>
 			<if test="invoiceNo != null">
@@ -1280,7 +1295,7 @@
 			<if test="amount != null">
 				AND s.amount=#{amount,jdbcType=DECIMAL}
 			</if>
-			<if test="type != null">
+			<if test="type != null and type !=3 ">
 				AND s.type=#{type,jdbcType=INTEGER}
 			</if>
 			<if test="agentId != null">
@@ -1311,7 +1326,7 @@
 				AND s.userName LIKE CONCAT(CONCAT('%',#{userName}),'%')
 			</if>
 			<if test="deptId != null">
-				AND za.deptId =#{deptId,jdbcType=VARCHAR}
+				AND d.deptId =#{deptId,jdbcType=VARCHAR}
 			</if>
 			<if test="agentName!=null">
 				AND za.userName LIKE CONCAT(CONCAT('%',#{agentName}),'%')
@@ -1324,6 +1339,12 @@
 			</if>
 			<if test="endingDate != null">
 				AND s.date <![CDATA[<=]]> #{endingDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalBeginningDate != null">
+				AND s.arriveDate <![CDATA[>=]]> #{arrivalBeginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalEndingDate != null">
+				AND s.arriveDate <![CDATA[<=]]> #{arrivalEndingDate,jdbcType=TIMESTAMP}
 			</if>
 			<if test="time!=null"> 
 				AND DATE_FORMAT(s.date,'%Y-%m')=#{time}
@@ -1372,6 +1393,9 @@
 			</if>
 			<if test="type != null and type==2">
 				GROUP BY v.name ORDER BY Quantity DESC
+			</if>
+			<if test="type != null and type==3">
+				GROUP BY s.airline ORDER BY Quantity DESC
 			</if>
 	</select>
 		<!-- flight Statistical -->

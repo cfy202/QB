@@ -2303,6 +2303,56 @@ public class StatisticalController  extends BaseController{
 		}
 		
 		/**
+		 * 机票航空公司统计
+		 * */
+		@RequestMapping(value="/airlineStatistical",method=RequestMethod.GET)
+		public String airlineStatistical(Model model,SupplierPriceForOrder so,String role){
+			List<Statistical> statisticalList=new ArrayList<Statistical>();
+			List<SupplierPriceForOrder> sfList=new ArrayList<SupplierPriceForOrder>();
+			so.setDeptId(null);
+			if(so.getArrivalBeginningDate()==null){
+				so.setArrivalBeginningDate(new Date());
+			}
+			if(so.getArrivalEndingDate()==null){
+				so.setArrivalEndingDate(new Date());
+			}
+			
+			so.setType(3);
+			List<SupplierPriceForOrder> soList=statisticalService.queryFlight(so);
+			
+			int total=0;
+			double amount=0;
+			double operatorFee=0;
+			for(int j=0;j<soList.size();j++){
+				SupplierPriceForOrder sf=soList.get(j);
+				total+=sf.getQuantity();
+				amount+=sf.getAmount().doubleValue();
+				operatorFee+=sf.getOperatorFee().doubleValue();
+				sfList.add(sf);
+				if(soList.size()>(j+1)&&sf.getDeptName()!=null&&!sf.getDeptName().equals(soList.get(j+1).getDeptName())&&j!=0||j==(soList.size()-1)){
+					Statistical statisticals=new Statistical();
+					statisticals.setDeptName(sf.getDeptName());
+					statisticals.setFlightList(sfList);
+					statisticals.setSum(total);
+					statisticals.setProfit(amount-operatorFee);
+					statisticalList.add(statisticals);
+					 total=0;
+					 amount=0;
+					 operatorFee=0;
+					 sfList=new ArrayList<SupplierPriceForOrder>();
+				}
+			}
+			
+			model.addAttribute("statisticalList", statisticalList);
+			model.addAttribute("menuId", "1111");
+			model.addAttribute("role", role);
+			model.addAttribute("dept", deptService.findAll());
+			model.addAttribute("so", so);
+			model.addAttribute("constant",CONSTANT);
+			return "/admin/statistical/airlineStatistical";
+		}
+		
+		/**
 		 * 机票统计
 		 * */
 		@RequestMapping(value="/venderStatistical",method=RequestMethod.GET)

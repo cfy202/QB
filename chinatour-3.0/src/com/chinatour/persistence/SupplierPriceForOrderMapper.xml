@@ -627,13 +627,16 @@
 			<if test="venderName != null">
 				AND v.name LIKE CONCAT(CONCAT('%',#{venderName}),'%')
 			</if>
+			<if test="invoiceNum!= null">
+				AND s.invoiceNum LIKE CONCAT(CONCAT('%',#{InvoiceNum}),'%')
+			</if>
 	</select>
 	<!-- 财务导出 -->
    	<select id="airTicekExcle" resultMap="BaseResultMap"
 		parameterType="com.chinatour.entity.SupplierPriceForOrder">
 		
 		SELECT
-			s.SupplierpricefororderId, s.Quantity,s.InvoiceNum, s.InvoiceNo,s. Airline, s.TicketNo,s.Charge,s.Card,s.Type,s.AgentId,s.approveStatus,s.deptId,
+			s.SupplierpricefororderId, s.Quantity,s.InvoiceNum, s.InvoiceNo,s. Airline, s.TicketNo,s.Charge,s.Card,s.Type,s.AgentId,s.approveStatus,s.deptId,s.net,
 		s.OperatorFee,s.Amount,s.Remark,s.RemarkOfAgent,s.agency,s.AccRemarkOfOp,s.rateOfCurrencyId,s.UserId,s.UserName,s.CreateDate,s.Date,s.ArriveDate,
 		s.UploadUrl,s.FlightPnr,s.IsDel,d.deptName,s.tempValue01,s.tempValue02,s.tempValue03,s.tempValue04,s.tempValue05,s.tempValue06,v.name as venderName
 		FROM supplierpricefororder s LEFT JOIN zs_admin za 
@@ -712,6 +715,12 @@
 			<if test="record.endingDate != null">
 				AND s.date <![CDATA[<=]]> #{record.endingDate,jdbcType=TIMESTAMP}
 			</if>
+			<if test="record.arrivalBeginningDate != null">
+				AND s.arriveDate <![CDATA[>=]]> #{record.arrivalBeginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="record.arrivalEndingDate != null">
+				AND s.arriveDate <![CDATA[<=]]> #{record.arrivalEndingDate,jdbcType=TIMESTAMP}
+			</if>
 			<if test="record.uploadUrl!= null">
 				AND s.uploadUrl=#{record.uploadUrl,jdbcType=VARCHAR}
 			</if>
@@ -763,6 +772,9 @@
 			<if test="record.venderName != null">
 				AND v.name LIKE CONCAT(CONCAT('%',#{record.venderName}),'%')
 			</if>
+			<if test="record.invoiceNum!= null">
+				AND s.invoiceNum LIKE CONCAT(CONCAT('%',#{record.InvoiceNum}),'%')
+			</if>
 		</where>
 		ORDER BY s.invoiceNum
 	</select>
@@ -771,7 +783,7 @@
 		parameterType="com.chinatour.entity.SupplierPriceForOrder">
 		SELECT
 			s.SupplierpricefororderId, s.Quantity, s.InvoiceNo,s. Airline, ai.TicketNo,ai.Charge as Charge,s.Card,s.Type,s.AgentId,s.approveStatus,s.deptId,
-		ai.net as OperatorFee,ai.selling as Amount,s.Remark,s.RemarkOfAgent,s.agency,s.AccRemarkOfOp,s.rateOfCurrencyId,s.UserId,s.UserName,s.CreateDate,s.Date,s.ArriveDate,
+		ai.total as OperatorFee,ai.selling as Amount,s.Remark,s.RemarkOfAgent,s.agency,s.AccRemarkOfOp,s.rateOfCurrencyId,s.UserId,s.UserName,s.CreateDate,s.Date,s.ArriveDate,
 		s.UploadUrl,s.FlightPnr,s.IsDel,d.deptName,s.tempValue01,s.tempValue02,s.tempValue03,s.tempValue04,s.tempValue05,s.tempValue06,v.name as venderName,s.InvoiceNum
 		FROM airticket_items ai,supplierpricefororder s LEFT JOIN zs_admin za 
 		   ON s.AgentId=za.id LEFT JOIN dept d ON d.deptId=za.deptId  LEFT JOIN vender v on s.Agency= v.VenderId
@@ -847,6 +859,12 @@
 			<if test="record.endingDate != null">
 				AND s.date <![CDATA[<=]]> #{record.endingDate,jdbcType=TIMESTAMP}
 			</if>
+			<if test="record.arrivalBeginningDate != null">
+				AND s.arriveDate <![CDATA[>=]]> #{record.arrivalBeginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="record.arrivalEndingDate != null">
+				AND s.arriveDate <![CDATA[<=]]> #{record.arrivalEndingDate,jdbcType=TIMESTAMP}
+			</if>
 			<if test="record.uploadUrl!= null">
 				AND s.uploadUrl=#{record.uploadUrl,jdbcType=VARCHAR}
 			</if>
@@ -897,6 +915,9 @@
 			</if>
 			<if test="record.venderName != null">
 				AND v.name LIKE CONCAT(CONCAT('%',#{record.venderName}),'%')
+			</if>
+			<if test="record.invoiceNum!= null">
+				AND s.invoiceNum LIKE CONCAT(CONCAT('%',#{record.InvoiceNum}),'%')
 			</if>
 		</where>
 		ORDER BY ai.ticketNo

@@ -613,6 +613,8 @@
 			var agentName = $("#search_agentName").val();
 			var beginningDate = $("#booking_beginningDate").val();
 			var endingDate = $("#booking_endingDate").val();
+			var arrivalBeginningDate = $("#arrival_beginningDate").val();
+			var arrivalEndingDate = $("#arrival_endingDate").val();
 			var type = $("#typeSpan").val();
 			var ticketType = $("#ticketType").val();
 			var approveStatus = $("#statusSpan").val();
@@ -627,8 +629,9 @@
 			var accRemarkOfOp = $("#search_name").val();
 			var card = $("#search_card").val();
 			var venderName = $("#search_agency").val();
-			html="invoiceNo="+invoiceNo+"&userName="+userName+"&agentName="+agentName+"&beginningDate="+beginningDate+"&endingDate="+endingDate+"&tempValue05="+tempValue05+"&deptName="+deptName+"&accRemarkOfOp="+accRemarkOfOp;
-			html+="&type="+type+"&approveStatus="+approveStatus+"&ticketNo="+ticketNo+"&airline="+airline+"&tempValue04="+tempValue04+"&charge="+charge+"&amount="+amount+"&operatorFee="+operatorFee+"&card="+card+"&venderName="+venderName+"&ticketType="+ticketType;
+			var InvoiceNum=$("#search_InvoiceNum").val();
+			html="invoiceNo="+invoiceNo+"&userName="+userName+"&agentName="+agentName+"&beginningDate="+beginningDate+"&endingDate="+endingDate+"&tempValue05="+tempValue05+"&deptName="+deptName+"&accRemarkOfOp="+accRemarkOfOp+"&arrivalBeginningDate="+arrivalBeginningDate+"&arrivalEndingDate="+arrivalEndingDate;
+			html+="&InvoiceNum="+InvoiceNum+"&type="+type+"&approveStatus="+approveStatus+"&ticketNo="+ticketNo+"&airline="+airline+"&tempValue04="+tempValue04+"&charge="+charge+"&amount="+amount+"&operatorFee="+operatorFee+"&card="+card+"&venderName="+venderName+"&ticketType="+ticketType;
     		location.href="${base}/admin/supplierPrice/excelForAirItem.jhtml?"+html;
 	}
 		//全选或不全选
