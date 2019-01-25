@@ -469,7 +469,7 @@
 <script src="[@spring.url '/resources/js/fuelux/loader.js'/]" type="text/javascript"></script>
 <script src="[@spring.url '/resources/js/jquery.parsley/parsley.js'/]" type="text/javascript"></script>
 	<script type="text/javascript">
-		var airline=["CA","MU","CZ","AA","DL","AS","UA","MF","CX","JL","HX","BR","HU","AC","SQ","NZ","QF","OZ","DI","MH","VN","CI","TG","BA","AZ","WS","KE","4O","TK","B6","3U","SQ","EK","CM","PR","NH","CM","US","VS","WN","EY","QR","AF","SU","MCO"];
+		var airline=["CA","MU","CZ","AA","DL","AS","UA","MF","CX","JL","HX","BR","HU","AC","SQ","NZ","QF","OZ","DI","MH","VN","CI","TG","BA","AZ","WS","KE","4O","TK","B6","3U","SQ","EK","CM","PR","NH","CM","US","VS","WN","EY","QR","AF","SU","MCO","LX"];
 		
 		$("#credit_slider").slider().on("slide",function(e){
 		      $("#credits").html("$" + e.value);

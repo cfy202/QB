@@ -61,9 +61,9 @@
 					    </div>
 					</div>
 					<div class="stats_bar">
-					    <div class="butpro butstyle flat" style="height:auto;margin-right:25%">
+					    <div class="butpro butstyle flat" style="height:auto;margin-right:10%">
 					        <div class="stat">
-					        	<div><span class="spk2">
+					        	<div><span class="spk1">
 					        		<canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: center;" width="74" height="16"></canvas>
 					        	</span></div>
 					        	<span style="font-size:12px;">
@@ -71,13 +71,23 @@
 					        	</span>
 					        </div>
 					    </div>
-					    <div class="butpro butstyle flat" style="height:auto;margin-left:10%">
+					    <div class="butpro butstyle flat" style="height:auto;margin-right:10%">
 					        <div class="stat">
 					        	<div><span class="spk2">
 					        		<canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: center;" width="74" height="16"></canvas>
 					        	</span></div>
 					        	<span style="font-size:12px;">
-					        		<a href="[@spring.url '/admin/statistical/airlineStatistical.jhtml'/]"> <font size="3"><b>Airline Statistics</b></font> </a> 
+					        		<a href="[@spring.url '/admin/statistical/airlineStatisticalBooking.jhtml'/]"> <font size="3"><b>Airline Statistics(Booking)</b></font> </a> 
+					        	</span>
+					        </div>
+					    </div>
+					    <div class="butpro butstyle flat" style="height:auto;">
+					        <div class="stat">
+					        	<div><span class="spk1">
+					        		<canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: center;" width="74" height="16"></canvas>
+					        	</span></div>
+					        	<span style="font-size:12px;">
+					        		<a href="[@spring.url '/admin/statistical/airlineStatistical.jhtml'/]"> <font size="3"><b>Airline Statistics(Departure)</b></font> </a> 
 					        	</span>
 					        </div>
 					    </div>
