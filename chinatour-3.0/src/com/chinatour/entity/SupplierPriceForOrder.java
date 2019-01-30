@@ -113,13 +113,13 @@ public class SupplierPriceForOrder extends BaseUuidEntity {
 	@JsonProperty
 	private String invoiceRemark;
 	@JsonProperty
-	private String BI; //用于统计
+	private int BI; //用于统计
 	@JsonProperty
-	private String BD; //用于统计
+	private int BD; //用于统计
 	@JsonProperty
-	private String EI; //用于统计
+	private int EI; //用于统计
 	@JsonProperty
-	private String ED; //用于统计
+	private int ED; //用于统计
 	
 	@JsonProperty
 	private Date arrivalBeginningDate; //抵达日期时间查询

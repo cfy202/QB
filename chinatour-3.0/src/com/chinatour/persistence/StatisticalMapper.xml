@@ -1273,6 +1273,8 @@
 			</if>
 			<if test="type != null and type==3">
 				AND d.deptId=s.deptId
+				AND s.TempValue04 IN ('B','E')
+				AND s.TempValue05 IN ('I','D')
 			</if>
 			<if test="invoiceNo != null">
 				AND s.invoiceNo =#{invoiceNo,jdbcType=VARCHAR}

@@ -185,10 +185,10 @@
     </div>
      -->
     <div class="about_us_main">
-            	<h2 style="margin-bottom:20px !important;">2018年發現中國美中國&亞洲團收客條款</h2>
+            	<h2 style="margin-bottom:20px !important;">2019-2020年發現中國美中國&亞洲團收客條款</h2>
                 <p><h4>一、	接送條款:</h4><br/>
 	                1、接送地點	<br/>
-					指定機場（或部分線路指定高鐵站）接送機，其他地點不接送。請提前提供航班資訊。免費接送的高鐵站為：廣州高鐵站，桂林高鐵站，長沙高鐵站，成都高鐵站，上海虹橋站。<br/>
+					指定機場（或部分線路指定高鐵站）接送機，其他地點不接送。請提前提供航班資訊。免費接送的高鐵站為：北京高鐵站、廈門高鐵站。<br/>
            			2、接機時間	<br/>
 A:中國超值特價團& B:中國純玩無購物團：所有線路都全天候接機（抵達當天24小時全天分批接機，相鄰兩小時的航班一起接機）<br/>
 *無需接機，自行入住酒店的客人務必于抵達前一周左右再次聯繫我社中國地區亞洲線路緊急聯絡人，已確認最終酒店是否有變更。	<br/>
@@ -275,60 +275,6 @@ C:亞洲超值特價團：在抵達日期前15天之內取消，收取團費價�
                 </p>
 			    
     </div>
-    <%-- <div class="us_photo">
-				<h4>企业人文环境</h4>
-				<div class="botton_scroll" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 789px;">
-		          <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 3156px;" class="featureul">
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <!--
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/2.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/3.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/4.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/5.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/6.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/2.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/3.jpg" height="167" width="233"> </li>
-		            -->
-		          </ul>
-				</div>
-			<div class="switch">
-				<a class="switch_prev" href="javascript:void();"></a>
-				<a class="switch_next" href="javascript:void();"></a>
-			</div>
-	</div> --%>
-	
-	<%-- <div class="us_main">
-			<div class="us_photo">
-				<h4>企业人文环境</h4>
-				<div class="botton_scroll" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 789px;">
-		          <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 3156px;" class="featureul">
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="<%=base%>/resources/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <!--
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/2.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/3.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/4.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/5.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/6.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/1.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/2.jpg" height="167" width="233"> </li>
-		            <li style="overflow: hidden; float: left; width: 233px; height: 167px;" class="featurebox"> <img src="/assets-web/images/about_us/3.jpg" height="167" width="233"> </li>
-		            -->
-		          </ul>
-				</div>
-			<div class="switch">
-				<a class="switch_prev" href="javascript:void();"></a>
-				<a class="switch_next" href="javascript:void();"></a>
-			</div>
-		</div>
-	</div> --%>
-	
 
     <div class="clear"></div>
 </div>

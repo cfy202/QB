@@ -83,28 +83,45 @@
 	                                    <th>Total</th>
 	                                    <th>Profit</th>
 	                                </tr>
+	                                </thead>
+	                                <tbody>
                                 	 [#list statisticalList as st]
 	                                    <tr [#if st_index%2==1] style="background-color:#fff"[/#if][#if st_index%2==0] style="background-color:#EFF8FE"[/#if]>
 	                                        <td rowspan="${st.flightList.size()+1}" style="text-align:center;vertical-align:middle">${st.deptName}</td>
-	                                        <td rowspan="${st.flightList.size()+1}" style="text-align:center;vertical-align:middle" id="sumb${st_index}">${st.sum}</td>
-	                                        <td rowspan="${st.flightList.size()+1}" style="text-align:center;vertical-align:middle" id="sumb${st_index}">${st.profit}</td>
+	                                        <td rowspan="${st.flightList.size()+1}" style="text-align:center;vertical-align:middle" id="sumb${st_index}">${st.sum} [#assign QtySum = (st.sum)?number/]</td>
+	                                        <td rowspan="${st.flightList.size()+1}" style="text-align:center;vertical-align:middle" id="sumb${st_index}">${st.profit} [#assign TotalProfitSum = (st.profit)?number/]</td>
 	                                        <input id="zlsum${st_index}" value="${st.flightList?size}" type="hidden"/>
 	                                    </tr>
 	                                   [#list st.flightList as flight]
 	                                   	<tr>
 	                                        <!-- <td><a href="javascript:;" onclick="viewInfor('${flight.airline}','${flight.deptId}')">${flight.airline}</a></td> -->
 	                                        <td>${flight.airline}</td>
-	                                        <td>${flight.BI}</td>
-	                                        <td>${flight.BD}</td>
-	                                        <td>${flight.EI}</td>
-	                                        <td>${flight.ED}</td>
-	                                        <td>${flight.net}</td>
-	                                        <td>${flight.operatorFee}</td>
-	                                        <td>${flight.amount-flight.operatorFee}</td>
+	                                        <td>${flight.BI} [#assign BISum = (BISum+flight.BI)?number/]</td>
+	                                        <td>${flight.BD} [#assign BDSum = (BDSum+flight.BD)?number/]</td>
+	                                        <td>${flight.EI} [#assign EISum = (EISum+flight.EI)?number/]</td>
+	                                        <td>${flight.ED} [#assign EDSum = (EDSum+flight.ED)?number/]</td>
+	                                        <td>${flight.net} [#assign NetSum = (NetSum+flight.net)?number/]</td>
+	                                        <td>${flight.operatorFee} [#assign TotalFeeSum = (TotalFeeSum+flight.operatorFee)?number/]</td>
+	                                        <td>${flight.amount-flight.operatorFee} [#assign ProfitSum = (ProfitSum+(flight.amount-flight.operatorFee))?number/]</td>
 	                                    </tr>
 	                                   [/#list]
 	                                [/#list]
-                                    </thead>
+                                    </tbody> 
+                                    <tfoot style="font-size:14px;font-weight:bold;">
+                                    	<tr>
+	                                 	   <td>Total:</td>
+		                                    <td>${QtySum}</td>
+		                                    <td>${TotalProfitSum}</td>
+		                                    <td></td>
+		                                    <td>${BISum}</td>
+		                                    <td>${BDSum}</td>
+		                                    <td>${EISum}</td>
+		                                    <td>${EDSum}</td>
+		                                    <td>${NetSum}</td>
+		                                    <td>${TotalFeeSum}</td>
+		                                    <td>${ProfitSum}</td>
+	                                	</tr>
+                                    </tfoot>
                                 </table>
 						</div>
 		</div>
