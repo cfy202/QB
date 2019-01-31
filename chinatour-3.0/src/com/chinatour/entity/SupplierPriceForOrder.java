@@ -120,6 +120,10 @@ public class SupplierPriceForOrder extends BaseUuidEntity {
 	private int EI; //用于统计
 	@JsonProperty
 	private int ED; //用于统计
+	@JsonProperty
+	private int PI; //用于统计
+	@JsonProperty
+	private int PD; //用于统计
 	
 	@JsonProperty
 	private Date arrivalBeginningDate; //抵达日期时间查询

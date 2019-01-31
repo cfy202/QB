@@ -70,6 +70,9 @@
 													<a style="cursor:pointer;"  target="_self"  class=" param-item " > 
 														<span  class="unchecked" name="classSpan" checked="false" onclick="change(this,'B');" >Bussiness</span> 
 													</a> 
+													<a style="cursor:pointer;"  target="_self"  class=" param-item " > 
+														<span  class="unchecked" name="classSpan" checked="false" onclick="change(this,'P');" >Premium</span> 
+													</a> 
 													<a style="cursor:pointer;"  target="_self"  class=" param-item" >
 														<span  class="unchecked"  name="classSpan" checked="false" onclick="change(this,'F');">First Class</span> 
 													</a>

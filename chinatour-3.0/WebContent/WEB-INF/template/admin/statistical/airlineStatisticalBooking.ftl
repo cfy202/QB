@@ -79,6 +79,8 @@
 	                                    <th>BD</th>
 	                                    <th>EI</th>
 	                                    <th>ED</th>
+	                                    <th>PI</th>
+	                                    <th>PD</th>
 	                                    <th>Net</th>
 	                                    <th>Total</th>
 	                                    <th>Profit</th>
@@ -100,6 +102,8 @@
 	                                        <td>${flight.BD} [#assign BDSum = (BDSum+flight.BD)?number/]</td>
 	                                        <td>${flight.EI} [#assign EISum = (EISum+flight.EI)?number/]</td>
 	                                        <td>${flight.ED} [#assign EDSum = (EDSum+flight.ED)?number/]</td>
+	                                        <td>${flight.PI} [#assign PISum = (PISum+flight.PI)?number/]</td>
+	                                        <td>${flight.PD} [#assign PDSum = (PDSum+flight.PD)?number/]</td>
 	                                        <td>${flight.net} [#assign NetSum = (NetSum+flight.net)?number/]</td>
 	                                        <td>${flight.operatorFee} [#assign TotalFeeSum = (TotalFeeSum+flight.operatorFee)?number/]</td>
 	                                        <td>${flight.amount-flight.operatorFee} [#assign ProfitSum = (ProfitSum+(flight.amount-flight.operatorFee))?number/]</td>
@@ -117,6 +121,8 @@
 		                                    <td>${BDSum}</td>
 		                                    <td>${EISum}</td>
 		                                    <td>${EDSum}</td>
+		                                    <td>${PISum}</td>
+		                                    <td>${PDSum}</td>
 		                                    <td>${NetSum}</td>
 		                                    <td>${TotalFeeSum}</td>
 		                                    <td>${ProfitSum}</td>

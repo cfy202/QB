@@ -1234,9 +1234,11 @@
 			d.deptName,
 			s.airline,
 			SUM(IF(TempValue04='B' AND TempValue05='I', Quantity, 0)) as BI,
-			SUM(IF(TempValue04='B'AND TempValue05='D', Quantity, 0)) as BD ,
+			SUM(IF(TempValue04='B'AND TempValue05='D.', Quantity, 0)) as BD ,
 			SUM(IF(TempValue04='E' AND TempValue05='I', Quantity, 0)) as EI,
-			SUM(IF(TempValue04='E'AND TempValue05='D', Quantity, 0)) as ED,
+			SUM(IF(TempValue04='E'AND TempValue05='D.', Quantity, 0)) as ED,
+			SUM(IF(TempValue04='P' AND TempValue05='I', Quantity, 0)) as PI,
+			SUM(IF(TempValue04='P'AND TempValue05='D.', Quantity, 0)) as PD,
 			</if>
 			s.tempValue01,
 			SUM(s.Quantity) as Quantity,
@@ -1273,8 +1275,8 @@
 			</if>
 			<if test="type != null and type==3">
 				AND d.deptId=s.deptId
-				AND s.TempValue04 IN ('B','E')
-				AND s.TempValue05 IN ('I','D')
+				AND s.TempValue04 IN ('B','E','P')
+				AND s.TempValue05 IN ('I','D.')
 			</if>
 			<if test="invoiceNo != null">
 				AND s.invoiceNo =#{invoiceNo,jdbcType=VARCHAR}
