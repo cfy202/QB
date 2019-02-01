@@ -54,6 +54,7 @@ public interface StatisticalMapper extends BaseMapper<Statistical, String> {
 	List<Statistical> findArrivalSource(Statistical statistical);
 	List<Statistical> findSourceName(Statistical statistical);
 	List<SupplierPriceForOrder> queryFlight(SupplierPriceForOrder so);
+	List<SupplierPriceForOrder> queryFlightAirline(SupplierPriceForOrder so);
 	
 	/**
 	 * 机票按供应商统计

@@ -2318,7 +2318,7 @@ public class StatisticalController  extends BaseController{
 			}
 			
 			so.setType(3);
-			List<SupplierPriceForOrder> soList=statisticalService.queryFlight(so);
+			List<SupplierPriceForOrder> soList=statisticalService.queryFlightAirline(so);
 			
 			int total=0;
 			double amount=0;
@@ -2368,7 +2368,7 @@ public class StatisticalController  extends BaseController{
 			}
 			
 			so.setType(3);
-			List<SupplierPriceForOrder> soList=statisticalService.queryFlight(so);
+			List<SupplierPriceForOrder> soList=statisticalService.queryFlightAirline(so);
 			
 			int total=0;
 			double amount=0;

@@ -623,6 +623,10 @@ public class StatisticalServiceImpl extends BaseServiceImpl<Statistical, String>
 		return statisticalMapper.queryFlight(so);
 	}
 	@Override
+	public List<SupplierPriceForOrder> queryFlightAirline(SupplierPriceForOrder so) {
+		return statisticalMapper.queryFlightAirline(so);
+	}
+	@Override
 	public List<SupplierPriceForOrder> queryFlightbyVender(SupplierPriceForOrder so) {
 		return statisticalMapper.queryFlightbyVender(so);
 	}

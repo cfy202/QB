@@ -1402,6 +1402,58 @@
 				GROUP BY s.airline ORDER BY Quantity DESC
 			</if>
 	</select>
+	
+	<select id="queryFlightAirline" resultType="com.chinatour.entity.SupplierPriceForOrder" parameterType="com.chinatour.entity.SupplierPriceForOrder">
+		SELECT
+			s.deptName,
+			s.airline,
+			SUM(IF(TempValue04='B' AND TempValue05='I', NewQuantity, 0)) as BI,
+			SUM(IF(TempValue04='B'AND TempValue05='D.', NewQuantity, 0)) as BD ,
+			SUM(IF(TempValue04='E' AND TempValue05='I', NewQuantity, 0)) as EI,
+			SUM(IF(TempValue04='E'AND TempValue05='D.', NewQuantity, 0)) as ED,
+			SUM(IF(TempValue04='P' AND TempValue05='I', NewQuantity, 0)) as PI,
+			SUM(IF(TempValue04='P'AND TempValue05='D.', NewQuantity, 0)) as PD,
+			s.tempValue01,
+			SUM(s.NewQuantity) as Quantity,
+			SUM(s.Net) as Net,
+			SUM(s.OperatorFee) as OperatorFee,
+			SUM(s.Amount) as Amount,
+			SUM(s.Charge) as Charge,
+			ROUND(SUM(s.tempValue06),2) as tempValue06
+		FROM (SELECT d.deptName,ss.Airline,ss.TempValue04,ss.TempValue05,ss.TempValue01,ss.Net,ss.OperatorFee,ss.Amount,ss.Charge,ss.TempValue06,
+				IF(ss.TicketType='R', (0-ss.Quantity), ss.Quantity) AS NewQuantity 
+			  FROM supplierpricefororder ss,dept d
+			  WHERE d.deptId=ss.deptId
+			  	AND ss.IsDel=0 
+			  	AND ss.TempValue04 IN ('B','E','P')
+				AND ss.TempValue05 IN ('I','D.')
+			<if test="airline != null">
+				AND ss.airline LIKE CONCAT(CONCAT('%',#{airline}),'%')
+			</if>
+			<if test="beginningDate != null">
+				AND ss.date <![CDATA[>=]]> #{beginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="endingDate != null">
+				AND ss.date <![CDATA[<=]]> #{endingDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalBeginningDate != null">
+				AND ss.arriveDate <![CDATA[>=]]> #{arrivalBeginningDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="arrivalEndingDate != null">
+				AND ss.arriveDate <![CDATA[<=]]> #{arrivalEndingDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="time!=null"> 
+				AND DATE_FORMAT(ss.date,'%Y-%m')=#{time}
+			</if> 
+			<if test="year!=null"> 
+				AND DATE_FORMAT(ss.date,'%Y')=#{year}
+			</if> 
+			<if test="date != null">
+				AND ss.Date = #{date,jdbcType=DATE}
+			</if>)s
+		GROUP BY s.airline ORDER BY Quantity DESC
+	</select>
+	
 		<!-- flight Statistical -->
 	<select id="queryFlightbyVender" resultType="com.chinatour.entity.SupplierPriceForOrder" parameterType="com.chinatour.entity.SupplierPriceForOrder">
 		SELECT

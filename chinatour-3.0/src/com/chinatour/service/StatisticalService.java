@@ -148,6 +148,7 @@ public interface StatisticalService extends BaseService<Statistical, String> {
 	Order detailsCountS(Order order);
 	List<Order> detailsSPrint(Order order);
 	List<SupplierPriceForOrder> queryFlight(SupplierPriceForOrder so);
+	List<SupplierPriceForOrder> queryFlightAirline(SupplierPriceForOrder so);
 	SupplierPriceForOrder ticketCount(SupplierPriceForOrder so);
 	Page<SupplierPriceForOrder> ticketPage(SupplierPriceForOrder so,
 			Pageable pageable);
