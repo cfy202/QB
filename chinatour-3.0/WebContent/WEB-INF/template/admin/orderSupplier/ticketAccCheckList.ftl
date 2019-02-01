@@ -126,7 +126,8 @@
 													<input type="text" size="14" id="search_agentName" placeholder="Agent..." />
 													<input type="text" size="14" id="search_dept" placeholder="Dept..." />
 													<input type="text" size="14" id="search_ticketNo" placeholder="TicketNo..." />
-													<input type="text" size="14" id="search_airLine" placeholder="AirLine..." /><br/>
+													<input type="text" size="14" id="search_airLine" placeholder="AirLine..." />
+													<input type="text" size="14" id="search_userName" placeholder="User Name..." /><br/>
 													<input type="text" size="14" id="search_Arc" placeholder="ARC..." />
 													<input type="text" size="14" id="search_name" placeholder="Name" />
 													<input type="text" size="14" id="search_card" placeholder="Card" />
@@ -305,7 +306,7 @@
 					data.venderName = $("#search_agency").val();
 					data.invoiceNo = $("#search_invoiceNo").val();
 					data.tempValue03 = $("#search_orderNo").val();//订单号
-					
+					data.userName=$("#search_userName").val();
 				}
             },
             "columns": [
