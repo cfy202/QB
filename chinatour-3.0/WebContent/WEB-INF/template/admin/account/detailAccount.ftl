@@ -43,6 +43,7 @@
           		<div style="height:25px; width:100%">
 					<label style="width:10%;">          	
 		            	<select name="years" id ="yearChange" class="select2"  onchange="yearsChange();" >
+		            	<!--
 						          <option value="2015-01">2015-01</option>
 						          <option value="2015-02">2015-02</option>
 						          <option value="2015-03">2015-03</option>
@@ -66,7 +67,7 @@
 						          <option value="2016-09">2016-09</option>
 						          <option value="2016-10">2016-10</option>
 						          <option value="2016-11">2016-11</option>
-						          <option value="2016-12">2016-12</option>
+						          <option value="2016-12">2016-12</option> -->
 						          <option value="2017-01">2017-01</option>
 						          <option value="2017-02">2017-02</option>
 						          <option value="2017-03">2017-03</option>
@@ -91,6 +92,18 @@
 						          <option value="2018-10">2018-10</option>
 						          <option value="2018-11">2018-11</option>
 						          <option value="2018-12">2018-12</option>
+						          <option value="2019-01">2019-01</option>
+						          <option value="2019-02">2019-02</option>
+						          <option value="2019-03">2019-03</option>
+						          <option value="2019-04">2019-04</option>
+						          <option value="2019-05">2019-05</option>
+						          <option value="2019-06">2019-06</option>
+						          <option value="2019-07">2019-07</option>
+						          <option value="2019-08">2019-08</option>
+						          <option value="2019-09">2019-09</option>
+						          <option value="2019-10">2019-10</option>
+						          <option value="2019-11">2019-11</option>
+						          <option value="2019-12">2019-12</option>
 						 </select>
 				 	</label>
 				</div>

@@ -1041,7 +1041,7 @@ public class TourController extends BaseController {
 		/**
 		 * 查看团下所有的Optional Excursion
 		 */
-			List<Order> ordersOfTour = orderService.findByTourId(order.getTourId());
+			/*List<Order> ordersOfTour = orderService.findByTourId(order.getTourId());
 			List<ReceivableInfoOfOrder> receivableInfoOfOrders=new ArrayList<ReceivableInfoOfOrder>();
 			for(Order orders:ordersOfTour){
 				ReceivableInfoOfOrder receivableInfoOfOrder=receivableInfoOfOrderMapper.findByOrderId(orders.getId());
@@ -1050,7 +1050,7 @@ public class TourController extends BaseController {
 				receivableInfoOfOrder.setOrderReceiveItemList(orderReceiveItems);
 				receivableInfoOfOrder.setTourInfoForOrder(tourInfoForOrderService.findByOrderId(orders.getId()));
 				receivableInfoOfOrders.add(receivableInfoOfOrder);
-			}
+			}*/
 		order.setIsDel(0);//未删除的客人
 		List<Order> orderList=orderService.findCustomerListByTourId(order);
 		List<Customer> customerList =new ArrayList<Customer>();
@@ -1096,7 +1096,7 @@ public class TourController extends BaseController {
 		model.addAttribute("menuId", menuId);
 		model.addAttribute("customerList", customerList);
 		model.addAttribute("customerFlightList", addList(customerFlightListS));
-		model.addAttribute("receivableInfoOfOrders",receivableInfoOfOrders);
+//		model.addAttribute("receivableInfoOfOrders",receivableInfoOfOrders);
 		return BaseTemplateURL + "/viewCustomerOrderInfo";
 	}
 	

@@ -159,7 +159,7 @@
 							</table>
 						</div>
 						
-						<div style="margin-top:50px">
+						<div style="margin-top:50px;display:none">
 							<table class="table table-bordered dataTable no-footer" id="datatable2">
 								<thead>
 									<tr>
