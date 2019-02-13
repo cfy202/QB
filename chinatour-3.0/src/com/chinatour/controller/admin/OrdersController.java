@@ -1500,12 +1500,12 @@ public class OrdersController extends BaseController {
 			destPath = invoiceToPdfService.createSelfInvoicePdfForChild(id);
 		}else{
 			temp="1";
-			Admin admin=adminService.getCurrent();
+//			Admin admin=adminService.getCurrent();
 			//将Li Yi的账号开放新功能
 			if(ordersTotal.getWr().equals("wholeSale")){
 				destPath = invoiceToPdfService.CreateInvoicePdfForReviseWholeSale(id);
 			}else{
-				destPath = invoiceToPdfService.CreateInvoicePdfForRevise(id);
+				destPath = invoiceToPdfService.CreateInvoicePdfForRevise(id,order,ordersTotal);
 			}
 //			else{
 //				destPath = invoiceToPdfService.createInvoicePdfForChild(id);

@@ -1,5 +1,8 @@
 package com.chinatour.service;
 
+import com.chinatour.entity.Order;
+import com.chinatour.entity.OrdersTotal;
+
 public interface InvoiceToPdfService {
 	//总单确认单
 	String createInvoicePdf(String orderId,String logo);
@@ -20,7 +23,7 @@ public interface InvoiceToPdfService {
 	//B2B Invoice(总单)
 	String createInvoicePdfB(String orderId,String logo);
 
-	String CreateInvoicePdfForRevise(String orderId);
+	String CreateInvoicePdfForRevise(String orderId,Order order,OrdersTotal ordersTotal);
 	
 	String CreateInvoicePdfForReviseWholeSale(String orderId);
 	

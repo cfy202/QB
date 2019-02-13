@@ -6482,11 +6482,11 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				//子单invoice(修订版本，原版未覆盖)
 				//retail
 				@Override
-				public String CreateInvoicePdfForRevise(String orderId) {
-					Order order = orderMapper.findById(orderId);
+				public String CreateInvoicePdfForRevise(String orderId,Order order,OrdersTotal ordersTotal) {
+//					Order order = orderMapper.findById(orderId);
 					String orderNumber = order.getOrderNo();
 					//获取该子订单对应的总订单
-					OrdersTotal ordersTotal = ordersTotalMapper.findById(order.getOrdersTotalId());
+//					OrdersTotal ordersTotal = ordersTotalMapper.findById(order.getOrdersTotalId());
 					
 					TourInfoForOrder tourInfoForOrder = tourInfoForOrderMapper.findByOrderId(orderId);
 					GroupLine groupLine;
