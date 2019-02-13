@@ -1698,6 +1698,7 @@
 		<include refid="Base_Column_List" />
 		FROM orders
 		WHERE TourId = #{tourId,jdbcType=VARCHAR}
+		ORDER BY CreateTime
 	</select>
 
 	<select id="findByTourIdForArr" resultMap="BaseResultMap"

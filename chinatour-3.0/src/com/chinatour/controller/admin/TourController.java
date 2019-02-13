@@ -674,10 +674,10 @@ public class TourController extends BaseController {
 	 */
 	@RequestMapping(value = "/modifyOrders", method = RequestMethod.GET)
 	public String modifyOrdersByTourCode(String tourId,Model model,String menuId){
-		List<Order> orderList=orderService.findCustomerForTourId(tourId);
+		List<Order> orderList=orderService.findByTourId(tourId);
 		String tourCode="";
 		if(orderList.size()>0){
-			tourCode=orderService.findCustomerForTourId(tourId).get(0).getTourCode();
+			tourCode=orderList.get(0).getTourCode();
 		}
 		
 		model.addAttribute("menuId", menuId);
