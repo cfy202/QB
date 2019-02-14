@@ -7179,12 +7179,14 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							subTotalData.addCell(toatl3);
 							//document.add(subTotalData);
 							//客人信息
-									List<Customer> customersForToatl = new ArrayList<Customer>();
+//									List<Customer> customersForToatl = new ArrayList<Customer>();
 									List<CustomerOrderRel> customerOrderRelList = customerOrderRelMapper.findCustomerByOrderId(orderId);
 									for(CustomerOrderRel customerOrderRel:customerOrderRelList){
 										if(customerOrderRel.getIsDel()==0||customerOrderRel.getIsDel()==3){
-											Customer customer = customerMapper.findById(customerOrderRel.getCustomerId());
-											customersForToatl.add(customer);
+//											Customer customer = customerMapper.findById(customerOrderRel.getCustomerId());
+//											Customer customer = customerOrderRel.getCustomer();
+//											customersForToatl.add(customer);
+											pasData.add(customerOrderRel.getCustomer().getLastName()+"/"+customerOrderRel.getCustomer().getFirstName()+customerOrderRel.getCustomer().getMiddleName());
 										}
 									}
 							
@@ -7218,11 +7220,11 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							tabalReamrk.addCell(CellItemFee);
 							
 							//添加客人名字信息
-				              if(customersForToatl!=null){
+				             /* if(customersForToatl!=null){
 				                  for(int i=0;i<customersForToatl.size();i++){
 				                	pasData.add(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName());
 				                  }
-				               }
+				               }*/
 							
 							StringBuffer sBuffer=new StringBuffer();
 							for(int a=0;a<pasData.size();a++){
