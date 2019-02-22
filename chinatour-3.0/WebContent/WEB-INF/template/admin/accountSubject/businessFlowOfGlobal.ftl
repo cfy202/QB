@@ -38,6 +38,7 @@
 			 		</td>
 			 		<td class="noBorder">Year
 			 			<select id="accountDateStr" class="select2" name="accountDateStr" >
+			 				 <option value="2019"[#if year==2019] selected = "selected"[/#if]>2019</option>
 			 				 <option value="2018"[#if year==2018] selected = "selected"[/#if]>2018</option>
 			 				 <option value="2017"[#if year==2017] selected = "selected"[/#if]>2017</option>
 			 				 <option value="2016"[#if year==2016] selected = "selected"[/#if]>2016</option>
