@@ -220,15 +220,15 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontChinese = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -871,7 +871,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					Font norm_fontChinese = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-					//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 							Color.BLACK);
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
@@ -1048,7 +1048,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 								middleName = "";
 							}
 							customerName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+middleName+customers.get(i).getFirstName(),norm_fontEng));
+							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+middleName+customers.get(i).getFirstName(),norm_fontChineseForContent));
 							customerData.addCell(customerName);
 							
 							PdfPCell gender = new PdfPCell();
@@ -1292,7 +1292,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 						hotelName.setBorderWidthBottom(0.3f);
 						hotelName.setMinimumHeight(36f);
 						hotelName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontEng));
+						hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontChineseForContent));
 						hotelData.addCell(hotelName);
 						
 						PdfPCell tel = new PdfPCell();
@@ -1310,7 +1310,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 						address.setBorderWidthBottom(0.3f);
 						address.setMinimumHeight(36f);
 						address.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						address.addElement(new Phrase(hotel.getAddress(),norm_fontEng));
+						address.addElement(new Phrase(hotel.getAddress(),norm_fontChineseForContent));
 						hotelData.addCell(address);
 						
 					}
@@ -1509,7 +1509,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-					//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
+					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 							Color.BLACK);
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -1703,7 +1703,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							customerName.setBorderWidthBottom(0.3f);
 							customerName.setMinimumHeight(36f);
 							customerName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontEng));
+							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontChineseForContent));
 							customerData.addCell(customerName);
 							
 							PdfPCell gender = new PdfPCell();
@@ -1949,7 +1949,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 						hotelName.setBorderWidthBottom(0.3f);
 						hotelName.setMinimumHeight(36f);
 						hotelName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontEng));
+						hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontChineseForContent));
 						hotelData.addCell(hotelName);
 						
 						PdfPCell tel = new PdfPCell();
@@ -1967,7 +1967,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 						address.setBorderWidthBottom(0.3f);
 						address.setMinimumHeight(36f);
 						address.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						address.addElement(new Phrase(hotel.getAddress(),norm_fontEng));
+						address.addElement(new Phrase(hotel.getAddress(),norm_fontChineseForContent));
 						hotelData.addCell(address);
 						
 					}
@@ -2162,7 +2162,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-					//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
+					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 							Color.BLACK);
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -2329,7 +2329,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							Finalvoucher.setWidthPercentage(100);//表格的宽度为100%
 							
 							
-							PdfPCell Finalvoucher_cell = new PdfPCell(new Paragraph(info.getHotelInfo(),norm_fontEng));
+							PdfPCell Finalvoucher_cell = new PdfPCell(new Paragraph(info.getHotelInfo(),norm_fontChineseForContent));
 							Finalvoucher_cell.setBorder(0);
 //							Finalvoucher_cell.setPaddingTop(5f);
 //							Finalvoucher_cell.setPaddingBottom(7f);
@@ -2349,7 +2349,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							Othervoucher_cell.setWidthPercentage(100);//表格的宽度为100%
 							
 							
-							PdfPCell CellInfo_2 = new PdfPCell(new Paragraph(info.getItineraryInfo(),norm_fontEng));
+							PdfPCell CellInfo_2 = new PdfPCell(new Paragraph(info.getItineraryInfo(),norm_fontChineseForContent));
 							CellInfo_2.setBorder(0);
 //							CellInfo_2.setPaddingTop(5f);
 //							CellInfo_2.setPaddingBottom(7f);
@@ -2406,7 +2406,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							customerName.setBorderWidthBottom(0.3f);
 							customerName.setMinimumHeight(36f);
 							customerName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontEng));
+							customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontChineseForContent));
 							customerData.addCell(customerName);
 							
 							PdfPCell gender = new PdfPCell();
@@ -2781,7 +2781,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -3036,7 +3036,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 									category.setBorderWidthBottom(0.3f);
 									category.setMinimumHeight(36f);
 									category.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									category.addElement(new Phrase(customerType,norm_fontEng));
+									category.addElement(new Phrase(customerType,norm_fontChineseForContent));
 									customerData.addCell(category);
 									
 									PdfPCell customerName = new PdfPCell();
@@ -3045,7 +3045,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 									customerName.setBorderWidthBottom(0.3f);
 									customerName.setMinimumHeight(36f);
 									customerName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontEng));
+									customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontChineseForContent));
 									customerData.addCell(customerName);
 									
 									PdfPCell gender = new PdfPCell();
@@ -3323,7 +3323,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 								hotelName.setBorderWidthBottom(0.3f);
 								hotelName.setMinimumHeight(36f);
 								hotelName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontEng));
+								hotelName.addElement(new Phrase(hotel.getHotelName()+"(或同级)",norm_fontChineseForContent));
 								hotelData.addCell(hotelName);
 								
 								PdfPCell tel = new PdfPCell();
@@ -3341,7 +3341,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 								address.setBorderWidthBottom(0.3f);
 								address.setMinimumHeight(36f);
 								address.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								address.addElement(new Phrase(hotel.getAddress(),norm_fontEng));
+								address.addElement(new Phrase(hotel.getAddress(),norm_fontChineseForContent));
 								hotelData.addCell(address);
 								
 							}
@@ -3481,7 +3481,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -3694,7 +3694,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							//Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -3999,7 +3999,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 									category.setBorderWidthBottom(0.3f);
 									category.setMinimumHeight(36f);
 									category.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									category.addElement(new Phrase(customerType,norm_fontEng));
+									category.addElement(new Phrase(customerType,norm_fontChineseForContent));
 									customerData.addCell(category);
 									
 									PdfPCell customerName = new PdfPCell();
@@ -4008,7 +4008,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 									customerName.setBorderWidthBottom(0.3f);
 									customerName.setMinimumHeight(36f);
 									customerName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontEng));
+									customerName.addElement(new Phrase(customers.get(i).getLastName()+"/"+customers.get(i).getFirstName()+customers.get(i).getMiddleName(),norm_fontChineseForContent));
 									customerData.addCell(customerName);
 									
 									PdfPCell gender = new PdfPCell();

@@ -194,12 +194,12 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 		//获取该总订单下的所有子订单
 		List<Order> orders = orderMapper.findByTourIdForArr(ordersTotalId);
 		//判断订单是否为自组（给Cynthia Su特定）
-//		int isSelfOrganize = orders.get(0).getIsSelfOrganize();
+		int isSelfOrganize = orders.get(0).getIsSelfOrganize();
 		//标头显示的信息
-//		String addressString = "";
-//	    String telString = "";
+		String addressString = "";
+	    String telString = "";
 	    String mailString = "";
-//	    String agentString = "";
+	    String agentString = "";
 	    String Company="";
 	    String cityAndState="";
 	    String venderId = ordersTotal.getCompanyId();
@@ -217,14 +217,14 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
         }
 	    Admin agen = adminService.findById(ordersTotal.getUserId());
     	Dept deptForAgent = deptMapper.findById(agen.getDeptId());
-//    	addressString = deptForAgent.getAddress();
-//    	telString = deptForAgent.getTel();
+    	addressString = deptForAgent.getAddress();
+    	telString = deptForAgent.getTel();
     	if(agen.getEmail().equals("")){
         	mailString = deptForAgent.getEmail();
     	}else{
     		mailString = agen.getEmail();
     	}
-//    	agentString = adminService.findById(ordersTotal.getUserId()).getUsername();
+    	agentString = adminService.findById(ordersTotal.getUserId()).getUsername();
     	
     	if(venderId!=null&&venderId.length()!=0){
     		vender = venderMapper.findById(venderId);
@@ -250,15 +250,15 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-				//BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-				//Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-				//Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 						Color.BLACK);
 				//中文超大号
-				//Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.BLACK);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
 						Color.BLACK);
 				
@@ -273,19 +273,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				tableTitleSpace.setWidths(wid11);
 				
 				
-				PdfPCell cell21_11 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell21_11 = new PdfPCell(new Paragraph("",chineseFontBig));
 				cell21_11.setBorder(0);
 				cell21_11.setPaddingBottom(10f);
 				cell21_11.setMinimumHeight(10f);
 				tableTitleSpace.addCell(cell21_11);
 				
-				PdfPCell cell21_21 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell21_21 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell21_21.setBorder(0);
 				cell21_21.setPaddingBottom(10f);
 				cell21_21.setMinimumHeight(10f);
 				tableTitleSpace.addCell(cell21_21);
 				
-				PdfPCell cell261 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell261 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell261.setBorder(0);
 				cell261.setMinimumHeight(10f);
 				cell261.setPaddingBottom(10f);
@@ -317,38 +317,38 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				}else{
 					logoInDentifying="文景假期";
 				}
-				PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,bold_fontEng));
+				PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,chineseFontBig));
 				cellHead.setBorder(0);
 				cellHead.setMinimumHeight(10f);
 				table13.addCell(cellHead);
 				
-				PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),norm_fontEng));
+				PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),littleChineseFont));
 				cell20.setBorder(0);
 				cell20.setMinimumHeight(10f);
 				table13.addCell(cell20);
 				
-				PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),norm_fontEng));
+				PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),littleChineseFont));
 				cell21.setBorder(0);
 				cell21.setMinimumHeight(10f);
 				table13.addCell(cell21);
 				
-				PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),norm_fontEng));
+				PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),littleChineseFont));
 				cell21_1.setBorder(0);
 				cell21_1.setMinimumHeight(10f);
 				table13.addCell(cell21_1);
 				
-				PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),norm_fontEng));
+				PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),littleChineseFont));
 				cell21_2.setBorder(0);
 				cell21_2.setMinimumHeight(10f);
 				table13.addCell(cell21_2);
 				
-				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailString,norm_fontEng));
+				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailString,littleChineseFont));
 				cell26.setBorder(0);
 				cell26.setMinimumHeight(10f);
 				table13.addCell(cell26);
 				
 				if(ordersTotal.getDeptId().equals(Constant.VANCOUVER)){
-					PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,norm_fontEng));
+					PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,littleChineseFont));
 					cell27.setBorder(0);
 					cell27.setMinimumHeight(10f);
 					table13.addCell(cell27);
@@ -663,50 +663,50 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
  								orderReceiveItemNo.setBorder(0);
  								orderReceiveItemNo.setBorderColor(i==orderReceiveItems.size()-1?Color.BLACK:Color.GRAY);
  								orderReceiveItemNo.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
- 								orderReceiveItemNo.setMinimumHeight(30f);
+ 								orderReceiveItemNo.setMinimumHeight(20f);
  								orderReceiveItemNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
- 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+ 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
  								itemsData.addCell(orderReceiveItemNo);
 								
 								PdfPCell serviceCell = new PdfPCell();
 								serviceCell.setBorder(0);
 								serviceCell.setBorderColor(i==orderReceiveItems.size()-1?Color.BLACK:Color.GRAY);
 								serviceCell.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
-								serviceCell.setMinimumHeight(30f);
+								serviceCell.setMinimumHeight(20f);
 								serviceCell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								serviceCell.addElement(new Phrase(service,norm_fontEng));
+								serviceCell.addElement(new Phrase(service,chineseFont));
 								itemsData.addCell(serviceCell);
 								
 								PdfPCell description = new PdfPCell();
 								description.setBorder(0);
 								description.setBorderColor(i==orderReceiveItems.size()-1?Color.BLACK:Color.GRAY);
 								description.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
-								description.setMinimumHeight(30f);
+								description.setMinimumHeight(20f);
 								description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								description.addElement(new Phrase(orderReceiveItems.get(i).getTourInfoForOrder()==null?"":orderReceiveItems.get(i).getTourInfoForOrder().getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),norm_fontEng));
+								description.addElement(new Phrase(orderReceiveItems.get(i).getTourInfoForOrder()==null?"":orderReceiveItems.get(i).getTourInfoForOrder().getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),chineseFont));
 								itemsData.addCell(description);
 								
 								PdfPCell price = new PdfPCell();
 								price.setBorder(0);
 								price.setBorderColor(i==orderReceiveItems.size()-1?Color.BLACK:Color.GRAY);
 								price.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
-								price.setMinimumHeight(30f);
+								price.setMinimumHeight(20f);
 								price.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								price.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
 								BigDecimal pri = orderReceiveItems.get(i).getItemFee();
 								if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 									pri = new BigDecimal(0).subtract(pri);
 								}
-								price.addElement(new Phrase(pri.toString(),norm_fontEng));
+								price.addElement(new Phrase(pri.toString(),chineseFont));
 								itemsData.addCell(price);
 								
 								PdfPCell num = new PdfPCell();
 								num.setBorder(0);
 								num.setBorderColor(i==orderReceiveItems.size()-1?Color.BLACK:Color.GRAY);
 								num.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
-								num.setMinimumHeight(30f);
+								num.setMinimumHeight(20f);
 								num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 								itemsData.addCell(num);
 								
 								PdfPCell totalFe = new PdfPCell();
@@ -720,7 +720,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									totalFe.setBorderColor(Color.GRAY);
 									totalFe.setBorderWidthBottom(0.3f);
 								}
-								totalFe.setMinimumHeight(30f);
+								totalFe.setMinimumHeight(20f);
 								totalFe.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								totalFe.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
 								BigDecimal itemFee = orderReceiveItems.get(i).getItemFee();
@@ -729,7 +729,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								}
 								Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 								BigDecimal toMount = new BigDecimal(mount);
-								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 								itemsData.addCell(totalFe);
 								totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 									}
@@ -1201,19 +1201,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
-//				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
+				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-//				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-//				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				Font bold_fontTitle = new Font(bfEng, 15, Font.NORMAL,
-						Color.GRAY);
+						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -1250,28 +1250,28 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfPCell cell2 = new PdfPCell(table13);
 				cell2.setBorder(0);
 				table1.addCell(cell2);
-				PdfPCell cell20 = new PdfPCell(new Paragraph(officeName,norm_fontEng));
+				PdfPCell cell20 = new PdfPCell(new Paragraph(officeName,littleChineseFont));
 				cell20.setBorder(0);
 				cell20.setMinimumHeight(10f);
 				table13.addCell(cell20);
 				
-				PdfPCell cell21 = new PdfPCell(new Paragraph(zcm,norm_fontEng));
+				PdfPCell cell21 = new PdfPCell(new Paragraph(zcm,littleChineseFont));
 				cell21.setBorder(0);
 				cell21.setMinimumHeight(10f);
 				table13.addCell(cell21);
 				
-				PdfPCell cell24 = new PdfPCell(new Paragraph(addressString,norm_fontEng));
+				PdfPCell cell24 = new PdfPCell(new Paragraph(addressString,littleChineseFont));
 				cell24.setBorder(0);
 				cell24.setMinimumHeight(10f);
 				table13.addCell(cell24);
 				
-				PdfPCell cell25 = new PdfPCell(new Paragraph("Tel:"+deptForAgent.getTel(),norm_fontEng));
+				PdfPCell cell25 = new PdfPCell(new Paragraph("Tel:"+deptForAgent.getTel(),littleChineseFont));
 				cell25.setBorder(0);
 				cell25.setMinimumHeight(10f);
 				table13.addCell(cell25);
 				
 				
-				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailString,norm_fontEng));
+				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailString,littleChineseFont));
 				cell26.setBorder(0);
 				cell26.setMinimumHeight(10f);
 				table13.addCell(cell26);
@@ -1415,7 +1415,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					}
 				}
 				
-				Chunk lineChunk=new Chunk("Payable / Receivable Invoice",norm_fontEng);
+				Chunk lineChunk=new Chunk("Payable / Receivable Invoice",littleChineseFont);
 				lineChunk.setUnderline(0.1f,0.1f);
 				
 				PdfPTable tableline = new PdfPTable(1);
@@ -1439,169 +1439,169 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				table3.setWidths(wid2); 
 				table3.getDefaultCell().setBorderWidth(0); //不显示边框
 				
-				PdfPCell cell111 = new PdfPCell(new Paragraph("Booking Date:      ",norm_fontEng));
+				PdfPCell cell111 = new PdfPCell(new Paragraph("Booking Date:      ",littleChineseFont));
 				cell111.setMinimumHeight(10f);
 				cell111.setBorder(0);
 				cell111.setBorderColor(Color.GRAY);
 				table3.addCell(cell111);
-				PdfPCell cell112 = new PdfPCell(new Paragraph(dFormat.format(orders.get(0).getCreateDate()),norm_fontEng));
+				PdfPCell cell112 = new PdfPCell(new Paragraph(dFormat.format(orders.get(0).getCreateDate()),littleChineseFont));
 				cell112.setMinimumHeight(10f);
 				cell112.setBorder(0);
 				cell112.setBorderColor(Color.GRAY);
 				table3.addCell(cell112);
-				PdfPCell cell113 = new PdfPCell(new Paragraph("Billing To:      ",norm_fontEng));
+				PdfPCell cell113 = new PdfPCell(new Paragraph("Billing To:      ",littleChineseFont));
 				cell113.setMinimumHeight(10f);
 				cell113.setBorder(0);
 				cell113.setBorderColor(Color.GRAY);
 				table3.addCell(cell113);
-				PdfPCell cell114 = new PdfPCell(new Paragraph(vender.getName(),norm_fontEng));
+				PdfPCell cell114 = new PdfPCell(new Paragraph(vender.getName(),littleChineseFont));
 				cell114.setMinimumHeight(10f);
 				cell114.setBorder(0);
 				cell114.setBorderColor(Color.GRAY);
 				table3.addCell(cell114);
 				
-				PdfPCell cell211 = new PdfPCell(new Paragraph("Invoice No:      ",norm_fontEng));
+				PdfPCell cell211 = new PdfPCell(new Paragraph("Invoice No:      ",littleChineseFont));
 				cell211.setMinimumHeight(10f);
 				cell211.setBorder(0);
 				cell211.setBorderColor(Color.GRAY);
 				table3.addCell(cell211);
-				PdfPCell cell212 = new PdfPCell(new Paragraph(ordersTotal.getOrderNumber(),norm_fontEng));
+				PdfPCell cell212 = new PdfPCell(new Paragraph(ordersTotal.getOrderNumber(),littleChineseFont));
 				cell212.setMinimumHeight(10f);
 				cell212.setBorder(0);
 				cell212.setBorderColor(Color.GRAY);
 				table3.addCell(cell212);
-				PdfPCell cell213 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell213 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell213.setMinimumHeight(10f);
 				cell213.setBorder(0);
 				cell213.setBorderColor(Color.GRAY);
 				table3.addCell(cell213);
-				PdfPCell cell214 = new PdfPCell(new Paragraph(vender.getRegistrationNo(),norm_fontEng));
+				PdfPCell cell214 = new PdfPCell(new Paragraph(vender.getRegistrationNo(),littleChineseFont));
 				cell214.setMinimumHeight(10f);
 				cell214.setBorder(0);
 				cell214.setBorderColor(Color.GRAY);
 				table3.addCell(cell214);
 				
-				PdfPCell cell311 = new PdfPCell(new Paragraph("Tour Code:",norm_fontEng));
+				PdfPCell cell311 = new PdfPCell(new Paragraph("Tour Code:",littleChineseFont));
 				cell311.setMinimumHeight(10f);
 				cell311.setBorder(0);
 				cell311.setBorderColor(Color.GRAY);
 				table3.addCell(cell311);
-				PdfPCell cell312 = new PdfPCell(new Paragraph(tourCode,norm_fontEng));
+				PdfPCell cell312 = new PdfPCell(new Paragraph(tourCode,littleChineseFont));
 				cell312.setMinimumHeight(10f);
 				cell312.setBorder(0);
 				cell312.setBorderColor(Color.GRAY);
 				table3.addCell(cell312);
-				PdfPCell cell313 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell313 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell313.setMinimumHeight(10f);
 				cell313.setBorder(0);
 				cell313.setBorderColor(Color.GRAY);
 				table3.addCell(cell313);
-				PdfPCell cell314 = new PdfPCell(new Paragraph(vender.getAddress(),norm_fontEng));
+				PdfPCell cell314 = new PdfPCell(new Paragraph(vender.getAddress(),littleChineseFont));
 				cell314.setMinimumHeight(10f);
 				cell314.setBorder(0);
 				cell314.setBorderColor(Color.GRAY);
 				table3.addCell(cell314);
 				
-				PdfPCell cell411 = new PdfPCell(new Paragraph("Product:",norm_fontEng));
+				PdfPCell cell411 = new PdfPCell(new Paragraph("Product:",littleChineseFont));
 				cell411.setMinimumHeight(10f);
 				cell411.setBorder(0);
 				cell411.setBorderColor(Color.GRAY);
 				table3.addCell(cell411);
-				PdfPCell cell412 = new PdfPCell(new Paragraph(tourName,norm_fontEng));
+				PdfPCell cell412 = new PdfPCell(new Paragraph(tourName,littleChineseFont));
 				cell412.setMinimumHeight(10f);
 				cell412.setBorder(0);
 				cell412.setBorderColor(Color.GRAY);
 				table3.addCell(cell412);
-				PdfPCell cell413 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell413 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell413.setMinimumHeight(10f);
 				cell413.setBorder(0);
 				cell413.setBorderColor(Color.GRAY);
 				table3.addCell(cell413);
-				PdfPCell cell414 = new PdfPCell(new Paragraph(vender.getCityId()+"  "+vender.getStateId()+"  "+vender.getZipCode()+" "+countryMapper.findById(vender.getCountryId()).getCountryName(),norm_fontEng));
+				PdfPCell cell414 = new PdfPCell(new Paragraph(vender.getCityId()+"  "+vender.getStateId()+"  "+vender.getZipCode()+" "+countryMapper.findById(vender.getCountryId()).getCountryName(),littleChineseFont));
 				cell414.setMinimumHeight(10f);
 				cell414.setBorder(0);
 				cell414.setBorderColor(Color.GRAY);
 				table3.addCell(cell414);
 				
-				PdfPCell cell911 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell911 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell911.setMinimumHeight(10f);
 				cell911.setBorder(0);
 				cell911.setBorderColor(Color.GRAY);
 				table3.addCell(cell911);
-				PdfPCell cell912 = new PdfPCell(new Paragraph(tourNameEn,norm_fontEng));
+				PdfPCell cell912 = new PdfPCell(new Paragraph(tourNameEn,littleChineseFont));
 				cell912.setMinimumHeight(10f);
 				cell912.setBorder(0);
 				cell912.setBorderColor(Color.GRAY);
 				table3.addCell(cell912);
-				PdfPCell cell913 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell913 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell913.setMinimumHeight(10f);
 				cell913.setBorder(0);
 				cell913.setBorderColor(Color.GRAY);
 				table3.addCell(cell913);
-				PdfPCell cell914 = new PdfPCell(new Paragraph(""+vender.getTel(),norm_fontEng));
+				PdfPCell cell914 = new PdfPCell(new Paragraph(""+vender.getTel(),littleChineseFont));
 				cell914.setMinimumHeight(10f);
 				cell914.setBorder(0);
 				cell914.setBorderColor(Color.GRAY);
 				table3.addCell(cell914);
 				
-				PdfPCell cell511 = new PdfPCell(new Paragraph("No. of Travellers:",norm_fontEng));
+				PdfPCell cell511 = new PdfPCell(new Paragraph("No. of Travellers:",littleChineseFont));
 				cell511.setMinimumHeight(10f);
 				cell511.setBorder(0);
 				cell511.setBorderColor(Color.GRAY);
 				table3.addCell(cell511);
-				PdfPCell cell512 = new PdfPCell(new Paragraph(ordersTotal.getTotalPeople()+"",norm_fontEng));
+				PdfPCell cell512 = new PdfPCell(new Paragraph(ordersTotal.getTotalPeople()+"",littleChineseFont));
 				cell512.setMinimumHeight(10f);
 				cell512.setBorder(0);
 				cell512.setBorderColor(Color.GRAY);
 				table3.addCell(cell512);
-				PdfPCell cell513 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell513 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell513.setMinimumHeight(10f);
 				cell513.setBorder(0);
 				cell513.setBorderColor(Color.GRAY);
 				table3.addCell(cell513);
-				PdfPCell cell514 = new PdfPCell(new Paragraph(""+vender.getBillEmail(),norm_fontEng));
+				PdfPCell cell514 = new PdfPCell(new Paragraph(""+vender.getBillEmail(),littleChineseFont));
 				cell514.setMinimumHeight(10f);
 				cell514.setBorder(0);
 				cell514.setBorderColor(Color.GRAY);
 				table3.addCell(cell514);
 				
-				PdfPCell cell611 = new PdfPCell(new Paragraph("Beginning Date:",norm_fontEng));
+				PdfPCell cell611 = new PdfPCell(new Paragraph("Beginning Date:",littleChineseFont));
 				cell611.setMinimumHeight(10f);
 				cell611.setBorder(0);
 				cell611.setBorderColor(Color.GRAY);
 				table3.addCell(cell611);
-				PdfPCell cell612 = new PdfPCell(new Paragraph(arriveDate,norm_fontEng));
+				PdfPCell cell612 = new PdfPCell(new Paragraph(arriveDate,littleChineseFont));
 				cell612.setMinimumHeight(10f);
 				cell612.setBorder(0);
 				cell612.setBorderColor(Color.GRAY);
 				table3.addCell(cell612);
-				PdfPCell cell613 = new PdfPCell(new Paragraph("Consultant:",norm_fontEng));
+				PdfPCell cell613 = new PdfPCell(new Paragraph("Consultant:",littleChineseFont));
 				cell613.setMinimumHeight(10f);
 				cell613.setBorder(0);
 				cell613.setBorderColor(Color.GRAY);
 				table3.addCell(cell613);
-				PdfPCell cell614 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),norm_fontEng));
+				PdfPCell cell614 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),littleChineseFont));
 				cell614.setMinimumHeight(10f);
 				cell614.setBorder(0);
 				cell614.setBorderColor(Color.GRAY);
 				table3.addCell(cell614);
 				
-				PdfPCell cell711 = new PdfPCell(new Paragraph("Ending Date:",norm_fontEng));
+				PdfPCell cell711 = new PdfPCell(new Paragraph("Ending Date:",littleChineseFont));
 				cell711.setMinimumHeight(10f);
 				cell711.setBorder(0);
 				cell711.setBorderColor(Color.GRAY);
 				table3.addCell(cell711);
-				PdfPCell cell712 = new PdfPCell(new Paragraph(offDate,norm_fontEng));
+				PdfPCell cell712 = new PdfPCell(new Paragraph(offDate,littleChineseFont));
 				cell712.setMinimumHeight(10f);
 				cell712.setBorder(0);
 				cell712.setBorderColor(Color.GRAY);
 				table3.addCell(cell712);
-				PdfPCell cell713 = new PdfPCell(new Paragraph("Consultant REF:",norm_fontEng));
+				PdfPCell cell713 = new PdfPCell(new Paragraph("Consultant REF:",littleChineseFont));
 				cell713.setMinimumHeight(10f);
 				cell713.setBorder(0);
 				cell713.setBorderColor(Color.GRAY);
 				table3.addCell(cell713);
-				PdfPCell cell714 = new PdfPCell(new Paragraph(orders.get(0).getRefNo(),norm_fontEng));
+				PdfPCell cell714 = new PdfPCell(new Paragraph(orders.get(0).getRefNo(),littleChineseFont));
 				cell714.setMinimumHeight(10f);
 				cell714.setBorder(0);
 				cell714.setBorderColor(Color.GRAY);
@@ -1707,7 +1707,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					cusNo.setBorderWidthLeft(0.3f);
 					cusNo.setMinimumHeight(20f);
 					cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-					cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+					cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 					cusData.addCell(cusNo);
 					
 					PdfPCell category = new PdfPCell();
@@ -1717,7 +1717,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					category.setMinimumHeight(20f);
 					category.setBorderWidthLeft(0.3f);
 					category.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-					category.addElement(new Phrase(customerType,norm_fontEng));
+					category.addElement(new Phrase(customerType,chineseFont));
 					cusData.addCell(category);
 					
 					PdfPCell cusName = new PdfPCell();
@@ -1727,7 +1727,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					cusName.setMinimumHeight(20f);
 					cusName.setBorderWidthLeft(0.3f);
 					cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-					cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+					cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 					cusData.addCell(cusName);
 					
 					PdfPCell cusGender = new PdfPCell();
@@ -1743,7 +1743,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					}else if(customersForToatl.get(i).getSex()==2){
 						sexForString = "MALE";
 					}
-					cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+					cusGender.addElement(new Phrase(sexForString,chineseFont));
 					cusData.addCell(cusGender);
 					
 					PdfPCell birth = new PdfPCell();
@@ -1754,7 +1754,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					birth.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 					birth.setBorderWidthLeft(0.3f);
 					SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy/MM/dd");
-					birth.addElement(new Phrase(customersForToatl.get(i).getDateOfBirth()==null?"":simpleDateFormat.format(customersForToatl.get(i).getDateOfBirth()),norm_fontEng));
+					birth.addElement(new Phrase(customersForToatl.get(i).getDateOfBirth()==null?"":simpleDateFormat.format(customersForToatl.get(i).getDateOfBirth()),chineseFont));
 					cusData.addCell(birth);
 					
 					PdfPCell language = new PdfPCell();
@@ -1764,7 +1764,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					language.setMinimumHeight(20f);
 					language.setBorderWidthLeft(0.3f);
 					language.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-					language.addElement(new Phrase(lange,norm_fontEng));
+					language.addElement(new Phrase(lange,chineseFont));
 					cusData.addCell(language);
 					
 					
@@ -1779,7 +1779,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					if(customersForToatl.get(i)!=null){
 							countryName = customersForToatl.get(i).getNationalityOfPassport();
 					}
-					cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+					cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 					cusData.addCell(cusNationality);
 					
 					PdfPCell residency = new PdfPCell();
@@ -1790,7 +1790,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					residency.setBorderWidthLeft(0.3f);
 					residency.setBorderWidthRight(0.3f);
 					residency.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-					residency.addElement(new Phrase(customersForToatl.get(i).getResidency(),norm_fontEng));
+					residency.addElement(new Phrase(customersForToatl.get(i).getResidency(),chineseFont));
 					cusData.addCell(residency);
 					
 				}
@@ -1852,7 +1852,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  num.setBorderWidthLeft(0.3f);
 						  num.setMinimumHeight(20f);
 						  num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  num.addElement(new Phrase(1+"",norm_fontEng));
+						  num.addElement(new Phrase(1+"",chineseFont));
 						  itemsData.addCell(num);
 						  
 						  PdfPCell fee = new PdfPCell();
@@ -1862,7 +1862,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  fee.setBorderWidthLeft(0.3f);
 						  fee.setMinimumHeight(20f);
 						  fee.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  fee.addElement(new Phrase("Tour Fee",norm_fontEng));
+						  fee.addElement(new Phrase("Tour Fee",chineseFont));
 						  itemsData.addCell(fee);
 						  
 						  PdfPCell cType = new PdfPCell();
@@ -1872,7 +1872,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  cType.setBorderWidthLeft(0.3f);
 						  cType.setMinimumHeight(20f);
 						  cType.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  cType.addElement(new Phrase(item.getFeeTitle(),norm_fontEng));
+						  cType.addElement(new Phrase(item.getFeeTitle(),chineseFont));
 						  itemsData.addCell(cType);
 						  
 						  PdfPCell price = new PdfPCell();
@@ -1882,7 +1882,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  price.setBorderWidthLeft(0.3f);
 						  price.setMinimumHeight(20f);
 						  price.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  price.addElement(new Phrase(item.getPrice().toString(),norm_fontEng));
+						  price.addElement(new Phrase(item.getPrice().toString(),chineseFont));
 						  itemsData.addCell(price);
 
 						  PdfPCell qty = new PdfPCell();
@@ -1892,7 +1892,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  qty.setBorderWidthLeft(0.3f);
 						  qty.setMinimumHeight(20f);
 						  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  qty.addElement(new Phrase(item.getPax().toString(),norm_fontEng));
+						  qty.addElement(new Phrase(item.getPax().toString(),chineseFont));
 						  itemsData.addCell(qty);
 						  
 						  PdfPCell qtyTotal = new PdfPCell();
@@ -1904,7 +1904,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  qtyTotal.setMinimumHeight(20f);
 						  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 						  double total=item.getPrice().doubleValue()*item.getPax().doubleValue();
-						  qtyTotal.addElement(new Phrase(total+"",norm_fontEng));
+						  qtyTotal.addElement(new Phrase(total+"",chineseFont));
 						  itemsData.addCell(qtyTotal);
 						  //成人佣金
 						  PdfPCell num1 = new PdfPCell();
@@ -1914,7 +1914,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  num1.setBorderWidthLeft(0.3f);
 						  num1.setMinimumHeight(20f);
 						  num1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  num1.addElement(new Phrase(2+"",norm_fontEng));
+						  num1.addElement(new Phrase(2+"",chineseFont));
 						  itemsData.addCell(num1);
 						  
 						  PdfPCell feea = new PdfPCell();
@@ -1924,7 +1924,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  feea.setBorderWidthLeft(0.3f);
 						  feea.setMinimumHeight(20f);
 						  feea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  feea.addElement(new Phrase("Commission",norm_fontEng));
+						  feea.addElement(new Phrase("Commission",chineseFont));
 						  itemsData.addCell(feea);
 						  
 						  PdfPCell cTypea = new PdfPCell();
@@ -1934,7 +1934,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  cTypea.setBorderWidthLeft(0.3f);
 						  cTypea.setMinimumHeight(20f);
 						  cTypea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  cTypea.addElement(new Phrase("Adult",norm_fontEng));
+						  cTypea.addElement(new Phrase("Adult",chineseFont));
 						  itemsData.addCell(cTypea);
 						  
 						  PdfPCell pricea = new PdfPCell();
@@ -1944,7 +1944,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  pricea.setBorderWidthLeft(0.3f);
 						  pricea.setMinimumHeight(20f);
 						  pricea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  pricea.addElement(new Phrase(orderFeeItemsList.get(9).getPrice().toString(),norm_fontEng));
+						  pricea.addElement(new Phrase(orderFeeItemsList.get(9).getPrice().toString(),chineseFont));
 						  itemsData.addCell(pricea);
 
 						  PdfPCell qtya = new PdfPCell();
@@ -1954,7 +1954,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  qtya.setBorderWidthLeft(0.3f);
 						  qtya.setMinimumHeight(20f);
 						  qtya.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						  qtya.addElement(new Phrase(orderFeeItemsList.get(9).getPax().toString(),norm_fontEng));
+						  qtya.addElement(new Phrase(orderFeeItemsList.get(9).getPax().toString(),chineseFont));
 						  itemsData.addCell(qtya);
 						  
 						  PdfPCell qtyTotala = new PdfPCell();
@@ -1966,7 +1966,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						  qtyTotala.setMinimumHeight(20f);
 						  qtyTotala.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 						  double totals=orderFeeItemsList.get(9).getPrice().doubleValue()*orderFeeItemsList.get(9).getPax().doubleValue();
-						  qtyTotala.addElement(new Phrase("-"+totals+"",norm_fontEng));
+						  qtyTotala.addElement(new Phrase("-"+totals+"",chineseFont));
 						  itemsData.addCell(qtyTotala);
 						  numb=2;
 						  prices=total-totals;
@@ -1982,7 +1982,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  num.setBorderWidthLeft(0.3f);
 								  num.setMinimumHeight(20f);
 								  num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  num.addElement(new Phrase(numb+"",norm_fontEng));
+								  num.addElement(new Phrase(numb+"",chineseFont));
 								  itemsData.addCell(num);
 								  
 								  PdfPCell fee = new PdfPCell();
@@ -1992,7 +1992,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  fee.setBorderWidthLeft(0.3f);
 								  fee.setMinimumHeight(20f);
 								  fee.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  fee.addElement(new Phrase("Tour Fee",norm_fontEng));
+								  fee.addElement(new Phrase("Tour Fee",chineseFont));
 								  itemsData.addCell(fee);
 								  
 								  PdfPCell cType = new PdfPCell();
@@ -2002,7 +2002,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  cType.setBorderWidthLeft(0.3f);
 								  cType.setMinimumHeight(20f);
 								  cType.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  cType.addElement(new Phrase(item.getFeeTitle(),norm_fontEng));
+								  cType.addElement(new Phrase(item.getFeeTitle(),chineseFont));
 								  itemsData.addCell(cType);
 								  
 								  PdfPCell price = new PdfPCell();
@@ -2012,7 +2012,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  price.setBorderWidthLeft(0.3f);
 								  price.setMinimumHeight(20f);
 								  price.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  price.addElement(new Phrase(item.getPrice().toString(),norm_fontEng));
+								  price.addElement(new Phrase(item.getPrice().toString(),chineseFont));
 								  itemsData.addCell(price);
 	
 								  PdfPCell qty = new PdfPCell();
@@ -2022,7 +2022,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qty.setBorderWidthLeft(0.3f);
 								  qty.setMinimumHeight(20f);
 								  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  qty.addElement(new Phrase(item.getPax().toString(),norm_fontEng));
+								  qty.addElement(new Phrase(item.getPax().toString(),chineseFont));
 								  itemsData.addCell(qty);
 								  
 								  PdfPCell qtyTotal = new PdfPCell();
@@ -2034,7 +2034,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qtyTotal.setMinimumHeight(20f);
 								  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								  double total=item.getPrice().doubleValue()*item.getPax().doubleValue();
-								  qtyTotal.addElement(new Phrase(total+"",norm_fontEng));
+								  qtyTotal.addElement(new Phrase(total+"",chineseFont));
 								  itemsData.addCell(qtyTotal);
 								  prices=prices+total;
 							}
@@ -2049,7 +2049,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  num1.setBorderWidthLeft(0.3f);
 								  num1.setMinimumHeight(20f);
 								  num1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  num1.addElement(new Phrase(numb+"",norm_fontEng));
+								  num1.addElement(new Phrase(numb+"",chineseFont));
 								  itemsData.addCell(num1);
 								  
 								  PdfPCell feea = new PdfPCell();
@@ -2059,7 +2059,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  feea.setBorderWidthLeft(0.3f);
 								  feea.setMinimumHeight(20f);
 								  feea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  feea.addElement(new Phrase("Child Commission",norm_fontEng));
+								  feea.addElement(new Phrase("Child Commission",chineseFont));
 								  itemsData.addCell(feea);
 								  
 								  PdfPCell cTypea = new PdfPCell();
@@ -2069,7 +2069,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  cTypea.setBorderWidthLeft(0.3f);
 								  cTypea.setMinimumHeight(20f);
 								  cTypea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  cTypea.addElement(new Phrase("Child",norm_fontEng));
+								  cTypea.addElement(new Phrase("Child",chineseFont));
 								  itemsData.addCell(cTypea);
 								  
 								  PdfPCell pricea = new PdfPCell();
@@ -2079,7 +2079,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  pricea.setBorderWidthLeft(0.3f);
 								  pricea.setMinimumHeight(20f);
 								  pricea.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  pricea.addElement(new Phrase(orderFeeItemsList.get(10).getPrice().toString(),norm_fontEng));
+								  pricea.addElement(new Phrase(orderFeeItemsList.get(10).getPrice().toString(),chineseFont));
 								  itemsData.addCell(pricea);
 	
 								  PdfPCell qtya = new PdfPCell();
@@ -2089,7 +2089,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qtya.setBorderWidthLeft(0.3f);
 								  qtya.setMinimumHeight(20f);
 								  qtya.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  qtya.addElement(new Phrase(orderFeeItemsList.get(10).getPax().toString(),norm_fontEng));
+								  qtya.addElement(new Phrase(orderFeeItemsList.get(10).getPax().toString(),chineseFont));
 								  itemsData.addCell(qtya);
 								  
 								  PdfPCell qtyTotala = new PdfPCell();
@@ -2101,7 +2101,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qtyTotala.setMinimumHeight(20f);
 								  qtyTotala.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								  double totals=orderFeeItemsList.get(10).getPrice().doubleValue()*orderFeeItemsList.get(10).getPax().doubleValue();
-								  qtyTotala.addElement(new Phrase("-"+totals+"",norm_fontEng));
+								  qtyTotala.addElement(new Phrase("-"+totals+"",chineseFont));
 								  itemsData.addCell(qtyTotala);
 								  prices=prices-totals;
 								}
@@ -2117,7 +2117,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  num1.setBorderWidthLeft(0.3f);
 							  num1.setMinimumHeight(20f);
 							  num1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							  num1.addElement(new Phrase(numb+"",norm_fontEng));
+							  num1.addElement(new Phrase(numb+"",chineseFont));
 							  itemsData.addCell(num1);
 							  PdfPCell fee = new PdfPCell();
 							  fee.setBorder(0);
@@ -2126,7 +2126,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  fee.setBorderWidthLeft(0.3f);
 							  fee.setMinimumHeight(20f);
 							  fee.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							  fee.addElement(new Phrase("Tour Fee",norm_fontEng));
+							  fee.addElement(new Phrase("Tour Fee",chineseFont));
 							  itemsData.addCell(fee);
 							  
 							  PdfPCell cType = new PdfPCell();
@@ -2136,7 +2136,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  cType.setBorderWidthLeft(0.3f);
 							  cType.setMinimumHeight(20f);
 							  cType.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							  cType.addElement(new Phrase(item.getFeeTitle(),norm_fontEng));
+							  cType.addElement(new Phrase(item.getFeeTitle(),chineseFont));
 							  itemsData.addCell(cType);
 							  
 							  PdfPCell price = new PdfPCell();
@@ -2146,7 +2146,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  price.setBorderWidthLeft(0.3f);
 							  price.setMinimumHeight(20f);
 							  price.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							  price.addElement(new Phrase(item.getPrice().toString(),norm_fontEng));
+							  price.addElement(new Phrase(item.getPrice().toString(),chineseFont));
 							  itemsData.addCell(price);
 
 							  PdfPCell qty = new PdfPCell();
@@ -2156,7 +2156,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  qty.setBorderWidthLeft(0.3f);
 							  qty.setMinimumHeight(20f);
 							  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							  qty.addElement(new Phrase(item.getPax().toString(),norm_fontEng));
+							  qty.addElement(new Phrase(item.getPax().toString(),chineseFont));
 							  itemsData.addCell(qty);
 							  
 							  PdfPCell qtyTotal = new PdfPCell();
@@ -2168,7 +2168,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							  qtyTotal.setMinimumHeight(20f);
 							  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 							  double total=item.getPrice().doubleValue()*item.getPax().doubleValue();
-							  qtyTotal.addElement(new Phrase(""+total,norm_fontEng));
+							  qtyTotal.addElement(new Phrase(""+total,chineseFont));
 							  itemsData.addCell(qtyTotal);
 							  prices=prices+total;
 							}
@@ -2183,7 +2183,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  num1.setBorderWidthLeft(0.3f);
 				  num1.setMinimumHeight(20f);
 				  num1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  num1.addElement(new Phrase("",norm_fontEng));
+				  num1.addElement(new Phrase("",chineseFont));
 				  itemsData.addCell(num1);
 				  PdfPCell fee = new PdfPCell();
 				  fee.setBorder(0);
@@ -2192,10 +2192,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  fee.setBorderWidthLeft(0.3f);
 				  fee.setMinimumHeight(20f);
 				  fee.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  fee.addElement(new Phrase("",norm_fontEng));
+				  fee.addElement(new Phrase("",chineseFont));
 				  itemsData.addCell(fee);
 				  
-				  Paragraph pA=new Paragraph("Sub Total Payable / Receivable A",norm_fontEng);
+				  Paragraph pA=new Paragraph("Sub Total Payable / Receivable A",chineseFont);
 				  PdfPCell price = new PdfPCell(pA);
 				  price.setPaddingTop(8f);
 				  price.setBorder(0);
@@ -2214,7 +2214,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qty.setBorderWidthLeft(0.3f);
 				  qty.setMinimumHeight(20f);
 				  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qty.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+				  qty.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 				  itemsData.addCell(qty);
 				  
 				  PdfPCell qtyTotal = new PdfPCell();
@@ -2225,7 +2225,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qtyTotal.setBorderWidthRight(0.3f);
 				  qtyTotal.setMinimumHeight(20f);
 				  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qtyTotal.addElement(new Phrase(prices+"",norm_fontEng));
+				  qtyTotal.addElement(new Phrase(prices+"",chineseFont));
 				  itemsData.addCell(qtyTotal);
 				  document.add(itemsData);
 				  alotherPrice=prices;
@@ -2287,7 +2287,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  num1.setBorderWidthLeft(0.3f);
 								  num1.setMinimumHeight(20f);
 								  num1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  num1.addElement(new Phrase(numb+"",norm_fontEng));
+								  num1.addElement(new Phrase(numb+"",chineseFont));
 								  tsItemsData.addCell(num1);
 								  PdfPCell fee = new PdfPCell();
 								  fee.setBorder(0);
@@ -2296,7 +2296,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  fee.setBorderWidthLeft(0.3f);
 								  fee.setMinimumHeight(20f);
 								  fee.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  fee.addElement(new Phrase("Pre-Paid",norm_fontEng));
+								  fee.addElement(new Phrase("Pre-Paid",chineseFont));
 								  tsItemsData.addCell(fee);
 								  
 								  PdfPCell cType = new PdfPCell();
@@ -2306,7 +2306,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  cType.setBorderWidthLeft(0.3f);
 								  cType.setMinimumHeight(20f);
 								  cType.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  cType.addElement(new Phrase(item.getFeeTitle(),norm_fontEng));
+								  cType.addElement(new Phrase(item.getFeeTitle(),chineseFont));
 								  tsItemsData.addCell(cType);
 								  
 								  PdfPCell price = new PdfPCell();
@@ -2317,7 +2317,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  price.setMinimumHeight(20f);
 								  price.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								  BigDecimal usFee=item.getPrice().divide(orders.get(0).getPeerUserRate(),2).setScale(2,BigDecimal.ROUND_DOWN);
-								  price.addElement(new Phrase(usFee.toString(),norm_fontEng));
+								  price.addElement(new Phrase(usFee.toString(),chineseFont));
 								  tsItemsData.addCell(price);
 
 								  PdfPCell qty = new PdfPCell();
@@ -2327,7 +2327,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qty.setBorderWidthLeft(0.3f);
 								  qty.setMinimumHeight(20f);
 								  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								  qty.addElement(new Phrase(item.getPax().toString(),norm_fontEng));
+								  qty.addElement(new Phrase(item.getPax().toString(),chineseFont));
 								  tsItemsData.addCell(qty);
 								  
 								  PdfPCell qtyTotal = new PdfPCell();
@@ -2339,7 +2339,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								  qtyTotal.setMinimumHeight(20f);
 								  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 								  double total=usFee.doubleValue()*item.getPax().doubleValue();
-								  qtyTotal.addElement(new Phrase(total+"",norm_fontEng));
+								  qtyTotal.addElement(new Phrase(total+"",chineseFont));
 								  tsItemsData.addCell(qtyTotal);
 								  prices=prices+total;
 							  }
@@ -2353,7 +2353,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  num1.setBorderWidthBottom(0.3f);
 				  num1.setBorderWidthLeft(0.3f);
 				  num1.setMinimumHeight(20f);
-				  num1.addElement(new Phrase("",norm_fontEng));
+				  num1.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(num1);
 				  PdfPCell fee = new PdfPCell();
 				  fee.setBorder(0);
@@ -2361,10 +2361,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  fee.setBorderWidthBottom(0.3f);
 				  fee.setBorderWidthLeft(0.3f);
 				  fee.setMinimumHeight(20f);
-				  fee.addElement(new Phrase("",norm_fontEng));
+				  fee.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(fee);
 				  
-				  Paragraph pri=new Paragraph("Additional Sub Total Payable / Receivable B",norm_fontEng);
+				  Paragraph pri=new Paragraph("Additional Sub Total Payable / Receivable B",chineseFont);
 				  PdfPCell price = new PdfPCell(pri);
 				  price.setPaddingTop(8f);
 				  price.setBorder(0);
@@ -2383,7 +2383,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qty.setBorderWidthLeft(0.3f);
 				  qty.setMinimumHeight(20f);
 				  qty.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qty.addElement(new Phrase("USD",norm_fontEng));
+				  qty.addElement(new Phrase("USD",chineseFont));
 				  tsItemsData.addCell(qty);
 				  
 				  PdfPCell qtyTotal = new PdfPCell();
@@ -2394,7 +2394,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qtyTotal.setBorderWidthRight(0.3f);
 				  qtyTotal.setMinimumHeight(20f);
 				  qtyTotal.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qtyTotal.addElement(new Phrase(prices+"",norm_fontEng));
+				  qtyTotal.addElement(new Phrase(prices+"",chineseFont));
 				  tsItemsData.addCell(qtyTotal);
 				  
 				  PdfPCell num11 = new PdfPCell();
@@ -2403,7 +2403,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  num11.setBorderWidthBottom(0.3f);
 				  num11.setBorderWidthLeft(0.3f);
 				  num11.setMinimumHeight(20f);
-				  num11.addElement(new Phrase("",norm_fontEng));
+				  num11.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(num11);
 				  PdfPCell fee1 = new PdfPCell();
 				  fee1.setBorder(0);
@@ -2411,10 +2411,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  fee1.setBorderWidthBottom(0.3f);
 				  fee1.setBorderWidthLeft(0.3f);
 				  fee1.setMinimumHeight(20f);
-				  fee1.addElement(new Phrase("",norm_fontEng));
+				  fee1.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(fee1);
 				  
-				  Paragraph pri1=new Paragraph("Exchange Rate",norm_fontEng);
+				  Paragraph pri1=new Paragraph("Exchange Rate",chineseFont);
 				  PdfPCell price1 = new PdfPCell(pri1);
 				  price1.setPaddingTop(8f);
 				  price1.setBorder(0);
@@ -2433,7 +2433,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qty1.setBorderWidthLeft(0.3f);
 				  qty1.setMinimumHeight(20f);
 				  qty1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qty1.addElement(new Phrase(orders.get(0).getPeerUserRate().toString(),norm_fontEng));
+				  qty1.addElement(new Phrase(orders.get(0).getPeerUserRate().toString(),chineseFont));
 				  tsItemsData.addCell(qty1);
 				  
 				  PdfPCell qtyTotal1 = new PdfPCell();
@@ -2444,7 +2444,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qtyTotal1.setBorderWidthRight(0.3f);
 				  qtyTotal1.setMinimumHeight(20f);
 				  qtyTotal1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qtyTotal1.addElement(new Phrase("",norm_fontEng));
+				  qtyTotal1.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(qtyTotal1);
 				  
 				  PdfPCell num12 = new PdfPCell();
@@ -2454,7 +2454,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  num12.setBorderWidthLeft(0.3f);
 				  num12.setMinimumHeight(20f);
 				  num12.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  num12.addElement(new Phrase("",norm_fontEng));
+				  num12.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(num12);
 				  PdfPCell fee2 = new PdfPCell();
 				  fee2.setBorder(0);
@@ -2463,10 +2463,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  fee2.setBorderWidthLeft(0.3f);
 				  fee2.setMinimumHeight(20f);
 				  fee2.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  fee2.addElement(new Phrase("",norm_fontEng));
+				  fee2.addElement(new Phrase("",chineseFont));
 				  tsItemsData.addCell(fee2);
 				  
-				  Paragraph pri2=new Paragraph("Additional Sub Total Payable / Receivable B",norm_fontEng);
+				  Paragraph pri2=new Paragraph("Additional Sub Total Payable / Receivable B",chineseFont);
 				  PdfPCell price2 = new PdfPCell(pri2);
 				  price2.setPaddingTop(8f);
 				  price2.setBorder(0);
@@ -2485,7 +2485,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qty2.setBorderWidthLeft(0.3f);
 				  qty2.setMinimumHeight(20f);
 				  qty2.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-				  qty2.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+				  qty2.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 				  tsItemsData.addCell(qty2);
 				  
 				  PdfPCell qtyTotal2 = new PdfPCell();
@@ -2497,7 +2497,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				  qtyTotal2.setMinimumHeight(20f);
 				  qtyTotal2.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 				  BigDecimal ratep=new BigDecimal(prices).multiply(orders.get(0).getPeerUserRate()).setScale(2,BigDecimal.ROUND_HALF_UP);//转换后金额
-				  qtyTotal2.addElement(new Phrase(ratep+"",norm_fontEng));
+				  qtyTotal2.addElement(new Phrase(ratep+"",chineseFont));
 				  tsItemsData.addCell(qtyTotal2);
 				  document.add(tsItemsData);
 				  tsRatePrice=ratep.doubleValue();
@@ -2543,7 +2543,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num11.setBorderWidthLeft(0.3f);
 			    num11.setMinimumHeight(20f);
 			    num11.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num11.addElement(new Phrase("",norm_fontEng));
+			    num11.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num11);
 			    PdfPCell num12 = new PdfPCell();
 			    num12.setBorder(0);
@@ -2552,10 +2552,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num12.setBorderWidthLeft(0.3f);
 			    num12.setMinimumHeight(20f);
 			    num12.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num12.addElement(new Phrase("",norm_fontEng));
+			    num12.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num12);
 			    
-			    Paragraph p=new Paragraph("Total Payable or Receivable (A+B)",norm_fontEng);
+			    Paragraph p=new Paragraph("Total Payable or Receivable (A+B)",chineseFont);
 			    PdfPCell num13 = new PdfPCell(p);
 			    num13.setPaddingTop(8f);
 			    num13.setBorder(0);
@@ -2573,7 +2573,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num14.setBorderWidthLeft(0.3f);
 			    num14.setMinimumHeight(20f);
 			    num14.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num14.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+			    num14.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 			    feeData.addCell(num14);
 
 			    PdfPCell num15 = new PdfPCell();
@@ -2585,7 +2585,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num15.setMinimumHeight(20f);
 			    num15.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 			    BigDecimal sumPrices=new BigDecimal(alotherPrice).add(new BigDecimal(tsRatePrice)).setScale(2,BigDecimal.ROUND_HALF_UP);
-			    num15.addElement(new Phrase(sumPrices+"",norm_fontEng));
+			    num15.addElement(new Phrase(sumPrices+"",chineseFont));
 			    feeData.addCell(num15);
 			    
 			    PdfPCell num21 = new PdfPCell();
@@ -2594,7 +2594,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num21.setBorderWidthBottom(0.3f);
 				num21.setBorderWidthLeft(0.3f);
 			    num21.setMinimumHeight(20f);
-			    num21.addElement(new Phrase("",norm_fontEng));
+			    num21.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num21);
 			    PdfPCell num22 = new PdfPCell();
 			    num22.setBorder(0);
@@ -2602,10 +2602,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num22.setBorderWidthBottom(0.3f);
 				num22.setBorderWidthLeft(0.3f);
 			    num22.setMinimumHeight(20f);
-			    num22.addElement(new Phrase("",norm_fontEng));
+			    num22.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num22);
 			    
-			    Paragraph p23=new Paragraph("GST Amount Inclusive",norm_fontEng);
+			    Paragraph p23=new Paragraph("GST Amount Inclusive",chineseFont);
 			    PdfPCell num23 = new PdfPCell(p23);
 			    num23.setPaddingTop(8f);
 			    num23.setBorder(0);
@@ -2623,7 +2623,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num24.setBorderWidthLeft(0.3f);
 			    num24.setMinimumHeight(20f);
 			    num24.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num24.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+			    num24.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 			    feeData.addCell(num24);
 
 			    PdfPCell num25 = new PdfPCell();
@@ -2634,7 +2634,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num25.setBorderWidthRight(0.3f);
 			    num25.setMinimumHeight(20f);
 			    num25.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num25.addElement(new Phrase("0",norm_fontEng));
+			    num25.addElement(new Phrase("0",chineseFont));
 			    feeData.addCell(num25);
 			    
 			    PdfPCell num31 = new PdfPCell();
@@ -2643,7 +2643,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num31.setBorderWidthBottom(0.3f);
 				num31.setBorderWidthLeft(0.3f);
 			    num31.setMinimumHeight(20f);
-			    num31.addElement(new Phrase("",norm_fontEng));
+			    num31.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num31);
 			    PdfPCell num32 = new PdfPCell();
 			    num32.setBorder(0);
@@ -2651,10 +2651,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num32.setBorderWidthBottom(0.3f);
 				num32.setBorderWidthLeft(0.3f);
 			    num32.setMinimumHeight(20f);
-			    num32.addElement(new Phrase("",norm_fontEng));
+			    num32.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num32);
 			  
-			    Paragraph p33=new Paragraph("Settlement",norm_fontEng);
+			    Paragraph p33=new Paragraph("Settlement",chineseFont);
 			    PdfPCell num33 = new PdfPCell(p33);
 			    num33.setPaddingTop(8f);
 			    num33.setBorder(0);
@@ -2672,7 +2672,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num34.setBorderWidthLeft(0.3f);
 			    num34.setMinimumHeight(20f);
 			    num34.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num34.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+			    num34.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 			    feeData.addCell(num34);
 
 			    PdfPCell num35 = new PdfPCell();
@@ -2683,7 +2683,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num35.setBorderWidthRight(0.3f);
 			    num35.setMinimumHeight(20f);
 			    num35.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num35.addElement(new Phrase(orders.get(0).getCostState()==2?sumPrices+"":"0",norm_fontEng));
+			    num35.addElement(new Phrase(orders.get(0).getCostState()==2?sumPrices+"":"0",chineseFont));
 			    feeData.addCell(num35);
 			    
 			    PdfPCell num41 = new PdfPCell();
@@ -2692,7 +2692,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num41.setBorderWidthBottom(0.3f);
 				num41.setBorderWidthLeft(0.3f);
 			    num41.setMinimumHeight(20f);
-			    num41.addElement(new Phrase("",norm_fontEng));
+			    num41.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num41);
 			    PdfPCell num42 = new PdfPCell();
 			    num42.setBorder(0);
@@ -2700,10 +2700,10 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num42.setBorderWidthBottom(0.3f);
 				num42.setBorderWidthLeft(0.3f);
 			    num42.setMinimumHeight(20f);
-			    num42.addElement(new Phrase("",norm_fontEng));
+			    num42.addElement(new Phrase("",chineseFont));
 			    feeData.addCell(num42);
 			  
-			    Paragraph p43=new Paragraph("Balance",norm_fontEng);
+			    Paragraph p43=new Paragraph("Balance",chineseFont);
 			    PdfPCell num43 = new PdfPCell(p43);
 			    num43.setPaddingTop(8f);
 			    num43.setBorder(0);
@@ -2721,7 +2721,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 			    num44.setMinimumHeight(20f);
 				num44.setBorderWidthLeft(0.3f);
 			    num44.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num44.addElement(new Phrase(currencyType.getCurrencyEng(),norm_fontEng));
+			    num44.addElement(new Phrase(currencyType.getCurrencyEng(),chineseFont));
 			    feeData.addCell(num44);
 
 			    PdfPCell num45 = new PdfPCell();
@@ -2732,7 +2732,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				num45.setBorderWidthRight(0.3f);
 			    num45.setMinimumHeight(20f);
 			    num45.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-			    num45.addElement(new Phrase(orders.get(0).getCostState()==2?"0":sumPrices+"",norm_fontEng));
+			    num45.addElement(new Phrase(orders.get(0).getCostState()==2?"0":sumPrices+"",chineseFont));
 			    feeData.addCell(num45);
 			    document.add(feeData);
 			    //费用历史记录
@@ -2884,19 +2884,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
 						Color.BLACK);
 				//中文超大号
-//				Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				
 				//中文斜体(大号)
-//				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-//				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -2919,32 +2919,32 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				cell2.setBorder(0);
 				table1.addCell(cell2);
 					
-					PdfPCell cellTitle = new PdfPCell(new Paragraph("chinatour.com",bold_fontEng));
+					PdfPCell cellTitle = new PdfPCell(new Paragraph("chinatour.com",chineseFontBig));
 					cellTitle.setBorder(0);
 					cellTitle.setMinimumHeight(10f);
 					table13.addCell(cellTitle);
 				
-					PdfPCell cell21 = new PdfPCell(new Paragraph("Agent Name:"+ticketPer_Name,norm_fontEng));
+					PdfPCell cell21 = new PdfPCell(new Paragraph("Agent Name:"+ticketPer_Name,littleChineseFont));
 					cell21.setBorder(0);
 					cell21.setMinimumHeight(10f);
 					table13.addCell(cell21);
 					
-					PdfPCell celladdress = new PdfPCell(new Paragraph("Address:"+ticketPer_address,norm_fontEng));
+					PdfPCell celladdress = new PdfPCell(new Paragraph("Address:"+ticketPer_address,littleChineseFont));
 					celladdress.setBorder(0);
 					celladdress.setMinimumHeight(10f);
 					table13.addCell(celladdress);
 					
-					PdfPCell cell24 = new PdfPCell(new Paragraph("Tel:"+ticketPer_Tel,norm_fontEng));
+					PdfPCell cell24 = new PdfPCell(new Paragraph("Tel:"+ticketPer_Tel,littleChineseFont));
 					cell24.setBorder(0);
 					cell24.setMinimumHeight(10f);
 					table13.addCell(cell24);
 					
-					PdfPCell cell25 = new PdfPCell(new Paragraph("Fax:"+ticketPer_Fax,norm_fontEng));
+					PdfPCell cell25 = new PdfPCell(new Paragraph("Fax:"+ticketPer_Fax,littleChineseFont));
 					cell25.setBorder(0);
 					cell25.setMinimumHeight(10f);
 					table13.addCell(cell25);
 					
-					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+ticketPer_Email,norm_fontEng));
+					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+ticketPer_Email,littleChineseFont));
 					cell26.setBorder(0);
 					cell26.setMinimumHeight(10f);
 					table13.addCell(cell26);
@@ -3124,7 +3124,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				tableReamrk.setWidthPercentage(100);//表格的宽度为100%
 				
 				
-				PdfPCell CellReamrk_2 = new PdfPCell(new Paragraph("Remarks:\n  "+invoiceRemark,norm_fontEng));
+				PdfPCell CellReamrk_2 = new PdfPCell(new Paragraph("Remarks:\n  "+invoiceRemark,chineseFont));
 				CellReamrk_2.setBorderWidth(0.2f);
 				CellReamrk_2.setBorderColor(Color.DARK_GRAY);
 				CellReamrk_2.setPaddingBottom(2f);
@@ -3326,7 +3326,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 						Color.BLACK);
 				
@@ -3334,9 +3334,9 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						Color.BLACK);
 				
 				//中文斜体(大号)
-//				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-//				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -3393,22 +3393,22 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				cell2.setBorder(0);
 				table1.addCell(cell2);
 				
-				PdfPCell cell21 = new PdfPCell(new Paragraph(addressForDept,norm_fontEng));
+				PdfPCell cell21 = new PdfPCell(new Paragraph(addressForDept,littleChineseFont));
 				cell21.setBorder(0);
 				cell21.setMinimumHeight(10f);
 				table13.addCell(cell21);
 				
-				PdfPCell cell24 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell24 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell24.setBorder(0);
 				cell24.setMinimumHeight(10f);
 				table13.addCell(cell24);
 				
-				/*PdfPCell cell25 = new PdfPCell(new Paragraph("Tel:"+telForDept,norm_fontEng));
+				/*PdfPCell cell25 = new PdfPCell(new Paragraph("Tel:"+telForDept,littleChineseFont));
 				cell25.setBorder(0);
 				cell25.setMinimumHeight(10f);
 				table13.addCell(cell25);*/
 				
-				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,norm_fontEng));
+				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,littleChineseFont));
 				cell26.setBorder(0);
 				cell26.setMinimumHeight(10f);
 				table13.addCell(cell26);
@@ -3429,21 +3429,21 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				table3.setWidths(wid2); 
 				table3.getDefaultCell().setBorderWidth(0); //不显示边框
 				
-				PdfPCell cell011 = new PdfPCell(new Paragraph("Invoice No:      ",norm_fontEng));
+				PdfPCell cell011 = new PdfPCell(new Paragraph("Invoice No:      ",littleChineseFont));
 				cell011.setMinimumHeight(10f);
 				cell011.setBorder(0);
 				cell011.setBorderWidthTop(0.3f);
 				cell011.setBorderColor(Color.GRAY);
 				table3.addCell(cell011);
 				
-				PdfPCell cell012 = new PdfPCell(new Paragraph(order.getOrderNo(),norm_fontEng));
+				PdfPCell cell012 = new PdfPCell(new Paragraph(order.getOrderNo(),littleChineseFont));
 				cell012.setMinimumHeight(10f);
 				cell012.setBorder(0);
 				cell012.setBorderWidthTop(0.3f);
 				cell012.setBorderColor(Color.GRAY);
 				table3.addCell(cell012);
 				
-				PdfPCell cell013 = new PdfPCell(new Paragraph("Agent:              ",norm_fontEng));
+				PdfPCell cell013 = new PdfPCell(new Paragraph("Agent:              ",littleChineseFont));
 				cell013.setBorder(0);
 				cell013.setMinimumHeight(10f);
 				cell013.setBorderColor(Color.GRAY);
@@ -3453,12 +3453,12 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfPCell cell014 = null;
 				if(ordersTotal.getWr().equals("wholeSale")){
 					if(ordersTotal.getCompanyId()!=null&&ordersTotal.getCompanyId().length()!=0){
-						cell014 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),norm_fontEng));
+						cell014 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),littleChineseFont));
 					}else{
-						cell014 = new PdfPCell(new Paragraph("",norm_fontEng));
+						cell014 = new PdfPCell(new Paragraph("",littleChineseFont));
 					}
 				}else{
-					cell014 = new PdfPCell(new Paragraph(ordersTotal.getAgent(),norm_fontEng));
+					cell014 = new PdfPCell(new Paragraph(ordersTotal.getAgent(),littleChineseFont));
 				}
 				cell014.setBorder(0);
 				cell014.setMinimumHeight(10f);
@@ -3466,7 +3466,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				cell014.setBorderWidthTop(0.3f);
 				table3.addCell(cell014);
 				
-				PdfPCell cell021 = new PdfPCell(new Paragraph("Tour Code:       ",norm_fontEng));
+				PdfPCell cell021 = new PdfPCell(new Paragraph("Tour Code:       ",littleChineseFont));
 				cell021.setBorder(0);
 				cell021.setMinimumHeight(10f);
 				cell021.setBorderColor(Color.GRAY);
@@ -3486,22 +3486,22 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						departureDate = df.format(tourInfoForOrder.getDepartureDate());
 					}
 				}
-				PdfPCell cell022 = new PdfPCell(new Paragraph(tourCode,norm_fontEng));
+				PdfPCell cell022 = new PdfPCell(new Paragraph(tourCode,littleChineseFont));
 				cell022.setBorder(0);
 				cell022.setMinimumHeight(10f);
 				table3.addCell(cell022);
 				
-				PdfPCell cell023 = new PdfPCell(new Paragraph("Tour Name:     ",norm_fontEng));
+				PdfPCell cell023 = new PdfPCell(new Paragraph("Tour Name:     ",littleChineseFont));
 				cell023.setBorder(0);
 				cell023.setMinimumHeight(10f);
 				table3.addCell(cell023);
 				
-				PdfPCell cell024 = new PdfPCell(new Paragraph(tourName,norm_fontEng));
+				PdfPCell cell024 = new PdfPCell(new Paragraph(tourName,littleChineseFont));
 				cell024.setBorder(0);
 				cell024.setMinimumHeight(10f);
 				table3.addCell(cell024);
 				
-				PdfPCell cell031 = new PdfPCell(new Paragraph("Bill To:                 ",norm_fontEng));
+				PdfPCell cell031 = new PdfPCell(new Paragraph("Bill To:                 ",littleChineseFont));
 				cell031.setBorder(0);
 				cell031.setMinimumHeight(10f);
 				table3.addCell(cell031);
@@ -3509,12 +3509,12 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfPCell cell032 = null;
 				if(ordersTotal.getWr().equals("wholeSale")){
 					if(ordersTotal.getCompanyId()!=null&&ordersTotal.getCompanyId().length()!=0){
-						cell032 = new PdfPCell(new Paragraph(vender.getName(),norm_fontEng)); 
+						cell032 = new PdfPCell(new Paragraph(vender.getName(),littleChineseFont)); 
 					}else{
-						cell032 = new PdfPCell(new Paragraph("",norm_fontEng));
+						cell032 = new PdfPCell(new Paragraph("",littleChineseFont));
 					}
 				}else{
-					cell032 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),norm_fontEng));
+					cell032 = new PdfPCell(new Paragraph(ordersTotal.getContactName(),littleChineseFont));
 				}
 				cell032.setBorder(0);
 				cell032.setMinimumHeight(10f);
@@ -3523,51 +3523,51 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfPCell cell034 = null;
 				PdfPCell cell042 = null;
 				PdfPCell cell044 = null;
-					PdfPCell cell033 = new PdfPCell(new Paragraph("Address:              ",norm_fontEng));
+					PdfPCell cell033 = new PdfPCell(new Paragraph("Address:              ",littleChineseFont));
 					cell033.setBorder(0);
 					cell033.setMinimumHeight(10f);
 					table3.addCell(cell033);
 					
-					cell034 = new PdfPCell(new Paragraph(ordersTotal.getAddress(),norm_fontEng));
+					cell034 = new PdfPCell(new Paragraph(ordersTotal.getAddress(),littleChineseFont));
 					cell034.setBorder(0);
 					cell034.setMinimumHeight(10f);
 					table3.addCell(cell034);
 					
-					PdfPCell cell041 = new PdfPCell(new Paragraph("Tel:                     ",norm_fontEng));
+					PdfPCell cell041 = new PdfPCell(new Paragraph("Tel:                     ",littleChineseFont));
 					cell041.setBorder(0);
 					cell041.setMinimumHeight(10f);
 					table3.addCell(cell041);
 					
-					cell042 = new PdfPCell(new Paragraph(ordersTotal.getTel(),norm_fontEng));
+					cell042 = new PdfPCell(new Paragraph(ordersTotal.getTel(),littleChineseFont));
 					cell042.setBorder(0);
 					cell042.setMinimumHeight(10f);
 					table3.addCell(cell042);
 					
-					PdfPCell cell043 = new PdfPCell(new Paragraph("Email:               ",norm_fontEng));
+					PdfPCell cell043 = new PdfPCell(new Paragraph("Email:               ",littleChineseFont));
 					cell043.setBorder(0);
 					cell043.setMinimumHeight(10f);
 					table3.addCell(cell043);
 					
-					cell044 = new PdfPCell(new Paragraph(ordersTotal.getEmail(),norm_fontEng));
+					cell044 = new PdfPCell(new Paragraph(ordersTotal.getEmail(),littleChineseFont));
 					cell044.setBorder(0);
 					cell044.setMinimumHeight(10f);
 					table3.addCell(cell044);
-				PdfPCell cell051 = new PdfPCell(new Paragraph("Person(s):         ",norm_fontEng));
+				PdfPCell cell051 = new PdfPCell(new Paragraph("Person(s):         ",littleChineseFont));
 				cell051.setBorder(0);
 				cell051.setMinimumHeight(10f);
 				table3.addCell(cell051);
 				
-				PdfPCell cell052 = new PdfPCell(new Paragraph(order.getTotalPeople().toString(),norm_fontEng));
+				PdfPCell cell052 = new PdfPCell(new Paragraph(order.getTotalPeople().toString(),littleChineseFont));
 				cell052.setBorder(0);
 				cell052.setMinimumHeight(10f);
 				table3.addCell(cell052);
 				
-				PdfPCell cell053 = new PdfPCell(new Paragraph("Departure Date:       ",norm_fontEng));
+				PdfPCell cell053 = new PdfPCell(new Paragraph("Departure Date:       ",littleChineseFont));
 				cell053.setBorder(0);
 				cell053.setMinimumHeight(10f);
 				table3.addCell(cell053);
 				
-				PdfPCell cell054 = new PdfPCell(new Paragraph(departureDate,norm_fontEng));
+				PdfPCell cell054 = new PdfPCell(new Paragraph(departureDate,littleChineseFont));
 				cell054.setBorder(0);
 				cell054.setMinimumHeight(10f);
 				table3.addCell(cell054);
@@ -3700,7 +3700,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
  								orderReceiveItemNo.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
  								orderReceiveItemNo.setMinimumHeight(20f);
  								orderReceiveItemNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
- 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+ 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
  								itemsData.addCell(orderReceiveItemNo);
 								
 								PdfPCell serviceCell = new PdfPCell();
@@ -3709,7 +3709,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								serviceCell.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								serviceCell.setMinimumHeight(20f);
 								serviceCell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								serviceCell.addElement(new Phrase(service,norm_fontEng));
+								serviceCell.addElement(new Phrase(service,chineseFont));
 								itemsData.addCell(serviceCell);
 								
 								PdfPCell description = new PdfPCell();
@@ -3718,7 +3718,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								description.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								description.setMinimumHeight(20f);
 								description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),norm_fontEng));
+								description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),chineseFont));
 								itemsData.addCell(description);
 								
 								PdfPCell price = new PdfPCell();
@@ -3731,7 +3731,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 									pri = new BigDecimal(0).subtract(pri);
 								}
-								price.addElement(new Phrase(pri.toString(),norm_fontEng));
+								price.addElement(new Phrase(pri.toString(),chineseFont));
 								itemsData.addCell(price);
 								
 								PdfPCell num = new PdfPCell();
@@ -3740,7 +3740,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								num.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								num.setMinimumHeight(20f);
 								num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 								itemsData.addCell(num);
 								
 								PdfPCell totalFe = new PdfPCell();
@@ -3762,7 +3762,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								}
 								Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 								BigDecimal toMount = new BigDecimal(mount);
-								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 								itemsData.addCell(totalFe);
 								totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 									}
@@ -3936,7 +3936,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusNo.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusNo.setMinimumHeight(20f);
 						cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+						cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 						cusData.addCell(cusNo);
 						
 						PdfPCell cusName = new PdfPCell();
@@ -3945,7 +3945,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusName.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusName.setMinimumHeight(20f);
 						cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 						cusData.addCell(cusName);
 						
 						PdfPCell cusGender = new PdfPCell();
@@ -3960,7 +3960,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						}else if(customersForToatl.get(i).getSex()==2){
 							sexForString = "MALE";
 						}
-						cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+						cusGender.addElement(new Phrase(sexForString,chineseFont));
 						cusData.addCell(cusGender);
 						
 						PdfPCell cusNationality = new PdfPCell();
@@ -3973,7 +3973,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						if(customersForToatl.get(i)!=null){
 								countryName = customersForToatl.get(i).getNationalityOfPassport();
 						}
-						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 						cusData.addCell(cusNationality);
 						
 					}
@@ -4035,7 +4035,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									payNo.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									payNo.setMinimumHeight(20f);
 									payNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									payNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+									payNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 									paymentData.addCell(payNo);
 									
 									PdfPCell date = new PdfPCell();
@@ -4045,7 +4045,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									date.setMinimumHeight(20f);
 									date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 									SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),norm_fontEng));
+									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),chineseFont));
 									paymentData.addCell(date);
 									
 									PdfPCell description = new PdfPCell();
@@ -4054,7 +4054,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									description.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									description.setMinimumHeight(20f);
 									description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									description.addElement(new Phrase(payCostRecords.get(i).getItem(),norm_fontEng));
+									description.addElement(new Phrase(payCostRecords.get(i).getItem(),chineseFont));
 									paymentData.addCell(description);
 									
 									PdfPCell remark = new PdfPCell();
@@ -4063,7 +4063,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									remark.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									remark.setMinimumHeight(20f);
 									remark.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),norm_fontEng));
+									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),chineseFont));
 									paymentData.addCell(remark);
 									
 									PdfPCell amount = new PdfPCell();
@@ -4072,7 +4072,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									amount.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									amount.setMinimumHeight(20f);
 									amount.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),norm_fontEng));
+									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),chineseFont));
 									paymentData.addCell(amount);
 								}
 						}
@@ -4087,7 +4087,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						Paragraph account = new Paragraph("ACCOUNT",bold_fontEngForTableHead);
 						account.setSpacingBefore(15f);
 						document.add(account);
-						Paragraph accountContent = new Paragraph(dept.getAccount(),norm_fontEng);
+						Paragraph accountContent = new Paragraph(dept.getAccount(),littleChineseFont);
 						document.add(accountContent);
 					}
 					
@@ -4096,7 +4096,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						Paragraph account = new Paragraph("NOTICE INFORMATION",bold_fontEngForTableHead);
 						account.setSpacingBefore(15f);
 						document.add(account);
-						Paragraph accountContent = new Paragraph(tourInfoForOrder.getSpecialRequirements(),norm_fontEng);
+						Paragraph accountContent = new Paragraph(tourInfoForOrder.getSpecialRequirements(),littleChineseFont);
 						document.add(accountContent);
 					}
 					
@@ -4178,12 +4178,12 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-//				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
-//				Font  littleChnorm_fontEng new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				//中文超大号
-//				Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				//中文斜体(小号)
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 						Color.BLACK);
@@ -4199,19 +4199,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				float[] wid11 ={0.45f,0.25f,0.30f};
 				tableTitleSpace.setWidths(wid11);
 				
-				PdfPCell cell21_11 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell21_11 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell21_11.setBorder(0);
 				cell21_11.setPaddingBottom(10f);
 				cell21_11.setMinimumHeight(10f);
 				tableTitleSpace.addCell(cell21_11);
 				
-				PdfPCell cell21_21 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell21_21 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell21_21.setBorder(0);
 				cell21_21.setPaddingBottom(10f);
 				cell21_21.setMinimumHeight(10f);
 				tableTitleSpace.addCell(cell21_21);
 				
-				PdfPCell cell261 = new PdfPCell(new Paragraph("",norm_fontEng));
+				PdfPCell cell261 = new PdfPCell(new Paragraph("",littleChineseFont));
 				cell261.setBorder(0);
 				cell261.setMinimumHeight(10f);
 				cell261.setPaddingBottom(10f);
@@ -4244,32 +4244,32 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				}else{
 					logoInDentifying="文景假期";
 				}
-				PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,bold_fontEng));
+				PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,chineseFontBig));
 				cellHead.setBorder(0);
 				cellHead.setMinimumHeight(10f);
 				table13.addCell(cellHead);
 				
-				PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getName(),norm_fontEng));
+				PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getName(),littleChineseFont));
 				cell20.setBorder(0);
 				cell20.setMinimumHeight(10f);
 				table13.addCell(cell20);
 				
-				PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),norm_fontEng));
+				PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),littleChineseFont));
 				cell21.setBorder(0);
 				cell21.setMinimumHeight(10f);
 				table13.addCell(cell21);
 				
-				PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),norm_fontEng));
+				PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),littleChineseFont));
 				cell21_1.setBorder(0);
 				cell21_1.setMinimumHeight(10f);
 				table13.addCell(cell21_1);
 				
-				PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),norm_fontEng));
+				PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),littleChineseFont));
 				cell21_2.setBorder(0);
 				cell21_2.setMinimumHeight(10f);
 				table13.addCell(cell21_2);
 				
-				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,norm_fontEng));
+				PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,littleChineseFont));
 				cell26.setBorder(0);
 				cell26.setMinimumHeight(10f);
 				table13.addCell(cell26);
@@ -4580,7 +4580,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
  								orderReceiveItemNo.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
  								orderReceiveItemNo.setMinimumHeight(20f);
  								orderReceiveItemNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
- 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+ 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
  								itemsData.addCell(orderReceiveItemNo);
 								
 								PdfPCell serviceCell = new PdfPCell();
@@ -4589,7 +4589,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								serviceCell.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								serviceCell.setMinimumHeight(20f);
 								serviceCell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								serviceCell.addElement(new Phrase(service,norm_fontEng));
+								serviceCell.addElement(new Phrase(service,chineseFont));
 								itemsData.addCell(serviceCell);
 								
 								PdfPCell description = new PdfPCell();
@@ -4598,7 +4598,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								description.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								description.setMinimumHeight(20f);
 								description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),norm_fontEng));
+								description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),chineseFont));
 								itemsData.addCell(description);
 								
 								PdfPCell price = new PdfPCell();
@@ -4612,7 +4612,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 									pri = new BigDecimal(0).subtract(pri);
 								}
-								price.addElement(new Phrase(pri.toString(),norm_fontEng));
+								price.addElement(new Phrase(pri.toString(),chineseFont));
 								itemsData.addCell(price);
 								
 								PdfPCell num = new PdfPCell();
@@ -4621,7 +4621,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								num.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 								num.setMinimumHeight(20f);
 								num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+								num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 								itemsData.addCell(num);
 								
 								PdfPCell totalFe = new PdfPCell();
@@ -4644,7 +4644,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								}
 								Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 								BigDecimal toMount = new BigDecimal(mount);
-								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+								totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 								itemsData.addCell(totalFe);
 								totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 									}
@@ -4684,7 +4684,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				
 				PdfPCell sub3 = new PdfPCell();
 				sub3.setBorder(0);
-				sub3.addElement(new Phrase("$"+totalCostFee.toString(),norm_fontEng));
+				sub3.addElement(new Phrase("$"+totalCostFee.toString(),chineseFont));
 				subTotalData.addCell(sub3);
 				
 				if(orders.get(0).getPeerUserId()!=null&&orders.get(0).getPeerUserId().length()!=0){
@@ -4700,7 +4700,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					
 					PdfPCell userFee3 = new PdfPCell();
 					userFee3.setBorder(0);
-					userFee3.addElement(new Phrase(peerUserFee.toString(),norm_fontEng));
+					userFee3.addElement(new Phrase(peerUserFee.toString(),chineseFont));
 					subTotalData.addCell(userFee3);
 				}
 				
@@ -4713,7 +4713,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				
 				PdfPCell paid3 = new PdfPCell();
 				paid3.setBorder(0);
-				paid3.addElement(new Phrase("$"+totalFee.toString(),norm_fontEng));
+				paid3.addElement(new Phrase("$"+totalFee.toString(),chineseFont));
 				subTotalData.addCell(paid3);
 				
 				PdfPCell balance2 = new PdfPCell();
@@ -4728,7 +4728,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				if(orders.get(0).getPeerUserId()!=null&&orders.get(0).getPeerUserId().length()!=0&&orders.get(0).getPeerUserFee()!=null){
 					bal = bal.subtract(orders.get(0).getPeerUserFee());
 				}
-				balance3.addElement(new Phrase("$"+bal.toString(),norm_fontEng));
+				balance3.addElement(new Phrase("$"+bal.toString(),chineseFont));
 				subTotalData.addCell(balance3);
 				
 				/*BigDecimal rate = new BigDecimal(1.00);
@@ -4744,7 +4744,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				
 				PdfPCell tax3 = new PdfPCell();
 				tax3.setBorder(0);
-				tax3.addElement(new Phrase(rate.toString(),norm_fontEng));
+				tax3.addElement(new Phrase(rate.toString(),chineseFont));
 				subTotalData.addCell(tax3);
 				
 				PdfPCell toatl2 = new PdfPCell();
@@ -4755,7 +4755,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				
 				PdfPCell toatl3 = new PdfPCell();
 				toatl3.setBorder(0);
-				toatl3.addElement(new Phrase("￥"+bal.multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP).toString(),norm_fontEng));
+				toatl3.addElement(new Phrase("￥"+bal.multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP).toString(),chineseFont));
 				subTotalData.addCell(toatl3);*/
 				document.add(subTotalData);
 				//客人信息
@@ -4805,7 +4805,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusNo.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusNo.setMinimumHeight(20f);
 						cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+						cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 						cusData.addCell(cusNo);
 						
 						PdfPCell cusName = new PdfPCell();
@@ -4814,7 +4814,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusName.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusName.setMinimumHeight(20f);
 						cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 						cusData.addCell(cusName);
 						
 						PdfPCell cusGender = new PdfPCell();
@@ -4829,7 +4829,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						}else if(customersForToatl.get(i).getSex()==2){
 							sexForString = "MALE";
 						}
-						cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+						cusGender.addElement(new Phrase(sexForString,chineseFont));
 						cusData.addCell(cusGender);
 						
 						PdfPCell cusNationality = new PdfPCell();
@@ -4842,7 +4842,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						if(customersForToatl.get(i)!=null){
 								countryName = customersForToatl.get(i).getNationalityOfPassport();
 						}
-						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 						cusData.addCell(cusNationality);
 						
 					}
@@ -4904,7 +4904,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									payNo.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									payNo.setMinimumHeight(20f);
 									payNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									payNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+									payNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 									paymentData.addCell(payNo);
 									
 									PdfPCell date = new PdfPCell();
@@ -4914,7 +4914,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									date.setMinimumHeight(20f);
 									date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 									SimpleDateFormat simpleDateFormat=new SimpleDateFormat("MM/dd/yyyy");
-									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),norm_fontEng));
+									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),chineseFont));
 									paymentData.addCell(date);
 									PdfPCell description = new PdfPCell();
 									description.setBorder(0);
@@ -4922,7 +4922,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									description.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									description.setMinimumHeight(20f);
 									description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									description.addElement(new Phrase(payCostRecords.get(i).getItem(),norm_fontEng));
+									description.addElement(new Phrase(payCostRecords.get(i).getItem(),chineseFont));
 									paymentData.addCell(description);
 									
 									PdfPCell remark = new PdfPCell();
@@ -4931,7 +4931,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									remark.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									remark.setMinimumHeight(20f);
 									remark.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),norm_fontEng));
+									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),chineseFont));
 									paymentData.addCell(remark);
 									
 									PdfPCell amount = new PdfPCell();
@@ -4941,7 +4941,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									amount.setMinimumHeight(20f);
 									amount.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 									amount.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),norm_fontEng));
+									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),chineseFont));
 									paymentData.addCell(amount);
 								}
 						}
@@ -5123,18 +5123,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-//					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 							Color.BLACK);
 					
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
 							Color.BLACK);
 					//中文超大号
-//					Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+					Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 					//中文斜体(大号)
-//					Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+					Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 					//中文斜体(小号)
-//					Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+					Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					
 					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					
@@ -5149,19 +5149,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					tableTitleSpace.setWidths(wid11);
 					
 					
-					PdfPCell cell21_11 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell21_11 = new PdfPCell(new Paragraph("",chineseFontBig));
 					cell21_11.setBorder(0);
 					cell21_11.setPaddingBottom(10f);
 					cell21_11.setMinimumHeight(10f);
 					tableTitleSpace.addCell(cell21_11);
 					
-					PdfPCell cell21_21 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell21_21 = new PdfPCell(new Paragraph("",littleChineseFont));
 					cell21_21.setBorder(0);
 					cell21_21.setPaddingBottom(10f);
 					cell21_21.setMinimumHeight(10f);
 					tableTitleSpace.addCell(cell21_21);
 					
-					PdfPCell cell261 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell261 = new PdfPCell(new Paragraph("",littleChineseFont));
 					cell261.setBorder(0);
 					cell261.setMinimumHeight(10f);
 					cell261.setPaddingBottom(10f);
@@ -5196,37 +5196,37 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					}else{
 						logoInDentifying="文景假期";
 					}
-					PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,bold_fontEng));
+					PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,chineseFontBig));
 					cellHead.setBorder(0);
 					cellHead.setMinimumHeight(10f);
 					table13.addCell(cellHead);
 					
-					PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),norm_fontEng));
+					PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),littleChineseFont));
 					cell20.setBorder(0);
 					cell20.setMinimumHeight(10f);
 					table13.addCell(cell20);
 					
-					PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),norm_fontEng));
+					PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),littleChineseFont));
 					cell21.setBorder(0);
 					cell21.setMinimumHeight(10f);
 					table13.addCell(cell21);
 					
-					PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),norm_fontEng));
+					PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),littleChineseFont));
 					cell21_1.setBorder(0);
 					cell21_1.setMinimumHeight(10f);
 					table13.addCell(cell21_1);
 					
-					PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),norm_fontEng));
+					PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),littleChineseFont));
 					cell21_2.setBorder(0);
 					cell21_2.setMinimumHeight(10f);
 					table13.addCell(cell21_2);
 					
-					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,norm_fontEng));
+					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,littleChineseFont));
 					cell26.setBorder(0);
 					cell26.setMinimumHeight(10f);
 					table13.addCell(cell26);
 					
-					PdfPCell cell1 = new PdfPCell(new Paragraph("Departure city:"+tourInfoForOrder.getSpecialRequirements(),norm_fontEng)); //中间放以空白列
+					PdfPCell cell1 = new PdfPCell(new Paragraph("Departure city:"+tourInfoForOrder.getSpecialRequirements(),littleChineseFont)); //中间放以空白列
 					cell1.setBorder(0);
 					table1.addCell(cell1);
 					
@@ -5501,7 +5501,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 	 								orderReceiveItemNo.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 	 								orderReceiveItemNo.setMinimumHeight(20f);
 	 								orderReceiveItemNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-	 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+	 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 	 								itemsData.addCell(orderReceiveItemNo);
 									
 									PdfPCell serviceCell = new PdfPCell();
@@ -5510,7 +5510,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									serviceCell.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									serviceCell.setMinimumHeight(20f);
 									serviceCell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									serviceCell.addElement(new Phrase(service,norm_fontEng));
+									serviceCell.addElement(new Phrase(service,chineseFont));
 									itemsData.addCell(serviceCell);
 									
 									PdfPCell description = new PdfPCell();
@@ -5519,7 +5519,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									description.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									description.setMinimumHeight(20f);
 									description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),norm_fontEng));
+									description.addElement(new Phrase(orderReceiveItems.get(i).getRemark(),chineseFont));
 									itemsData.addCell(description);
 									
 									PdfPCell price = new PdfPCell();
@@ -5532,7 +5532,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 										pri = new BigDecimal(0).subtract(pri);
 									}
-									price.addElement(new Phrase(pri.toString(),norm_fontEng));
+									price.addElement(new Phrase(pri.toString(),chineseFont));
 									itemsData.addCell(price);
 									
 									PdfPCell num = new PdfPCell();
@@ -5541,7 +5541,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									num.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									num.setMinimumHeight(20f);
 									num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+									num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 									itemsData.addCell(num);
 									
 									PdfPCell totalFe = new PdfPCell();
@@ -5563,7 +5563,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									}
 									Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 									BigDecimal toMount = new BigDecimal(mount);
-									totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+									totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 									itemsData.addCell(totalFe);
 									totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 										}
@@ -5603,7 +5603,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					
 					PdfPCell sub3 = new PdfPCell();
 					sub3.setBorder(0);
-					sub3.addElement(new Phrase("$"+totalCostFee.toString(),norm_fontEng));
+					sub3.addElement(new Phrase("$"+totalCostFee.toString(),chineseFont));
 					subTotalData.addCell(sub3);
 					
 				/*	PdfPCell paid1 = new PdfPCell();
@@ -5624,7 +5624,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						
 						PdfPCell userFee3 = new PdfPCell();
 						userFee3.setBorder(0);
-						userFee3.addElement(new Phrase("$"+peerUserFee.toString(),norm_fontEng));
+						userFee3.addElement(new Phrase("$"+peerUserFee.toString(),chineseFont));
 						subTotalData.addCell(userFee3);
 					}
 					
@@ -5637,7 +5637,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					
 					PdfPCell paid3 = new PdfPCell();
 					paid3.setBorder(0);
-					paid3.addElement(new Phrase("$"+totalFee.toString(),norm_fontEng));
+					paid3.addElement(new Phrase("$"+totalFee.toString(),chineseFont));
 					subTotalData.addCell(paid3);
 					
 				/*	PdfPCell balance1 = new PdfPCell();
@@ -5657,7 +5657,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					if(order.getPeerUserId()!=null&&order.getPeerUserId().length()!=0&&order.getPeerUserFee()!=null){
 						bal = bal.subtract(order.getPeerUserFee());
 					}
-					balance3.addElement(new Phrase("$"+bal.toString(),norm_fontEng));
+					balance3.addElement(new Phrase("$"+bal.toString(),chineseFont));
 					subTotalData.addCell(balance3);
 					
 					/*BigDecimal rate = new BigDecimal(1.00);
@@ -5677,7 +5677,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					
 					PdfPCell tax3 = new PdfPCell();
 					tax3.setBorder(0);
-					tax3.addElement(new Phrase(rate.toString(),norm_fontEng));
+					tax3.addElement(new Phrase(rate.toString(),chineseFont));
 					subTotalData.addCell(tax3);*/
 					
 				/*	PdfPCell toatl1 = new PdfPCell();
@@ -5693,7 +5693,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					
 					PdfPCell toatl3 = new PdfPCell();
 					toatl3.setBorder(0);
-					toatl3.addElement(new Phrase("￥"+bal.multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP).toString(),norm_fontEng));
+					toatl3.addElement(new Phrase("￥"+bal.multiply(rate).setScale(2,BigDecimal.ROUND_HALF_UP).toString(),chineseFont));
 					subTotalData.addCell(toatl3);*/
 					document.add(subTotalData);
 					//客人信息
@@ -5744,7 +5744,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							cusNo.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 							cusNo.setMinimumHeight(20f);
 							cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+							cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 							cusData.addCell(cusNo);
 							
 							PdfPCell cusName = new PdfPCell();
@@ -5753,7 +5753,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							cusName.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 							cusName.setMinimumHeight(20f);
 							cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+							cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 							cusData.addCell(cusName);
 							
 							PdfPCell cusGender = new PdfPCell();
@@ -5768,7 +5768,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							}else if(customersForToatl.get(i).getSex()==2){
 								sexForString = "MALE";
 							}
-							cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+							cusGender.addElement(new Phrase(sexForString,chineseFont));
 							cusData.addCell(cusGender);
 							
 							PdfPCell cusNationality = new PdfPCell();
@@ -5781,7 +5781,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							if(customersForToatl.get(i)!=null){
 									countryName = customersForToatl.get(i).getNationalityOfPassport();
 							}
-							cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+							cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 							cusData.addCell(cusNationality);
 							
 						}
@@ -5841,7 +5841,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 										payNo.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 										payNo.setMinimumHeight(20f);
 										payNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-										payNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+										payNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 										paymentData.addCell(payNo);
 										
 										PdfPCell date = new PdfPCell();
@@ -5851,7 +5851,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 										date.setMinimumHeight(20f);
 										date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 										SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-										date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),norm_fontEng));
+										date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),chineseFont));
 										paymentData.addCell(date);
 										
 										PdfPCell description = new PdfPCell();
@@ -5860,7 +5860,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 										description.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 										description.setMinimumHeight(20f);
 										description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-										description.addElement(new Phrase(payCostRecords.get(i).getItem(),norm_fontEng));
+										description.addElement(new Phrase(payCostRecords.get(i).getItem(),chineseFont));
 										paymentData.addCell(description);
 										
 										PdfPCell amount = new PdfPCell();
@@ -5869,7 +5869,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 										amount.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 										amount.setMinimumHeight(20f);
 										amount.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-										amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),norm_fontEng));
+										amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),chineseFont));
 										paymentData.addCell(amount);
 									}
 							}
@@ -6025,7 +6025,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 									Color.BLACK);
 							
@@ -6033,9 +6033,9 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									Color.BLACK);
 							
 							//中文斜体(大号)
-//							Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+							Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							//中文斜体(小号)
-//							Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+							Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							
 							document.open();
 							// 添加抬头图片
@@ -6092,22 +6092,22 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							cell2.setBorder(0);
 							table1.addCell(cell2);
 							
-							PdfPCell cell21 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell21 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell21.setBorder(0);
 							cell21.setMinimumHeight(10f);
 							table13.addCell(cell21);
 							
-							PdfPCell cell24 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell24 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell24.setBorder(0);
 							cell24.setMinimumHeight(10f);
 							table13.addCell(cell24);
 							
-							PdfPCell cell25 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell25 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell25.setBorder(0);
 							cell25.setMinimumHeight(10f);
 							table13.addCell(cell25);
 							
-							PdfPCell cell26 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell26 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell26.setBorder(0);
 							cell26.setMinimumHeight(10f);
 							table13.addCell(cell26);
@@ -6128,28 +6128,28 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							table3.setWidths(wid2); 
 							table3.getDefaultCell().setBorderWidth(0); //不显示边框
 							
-							PdfPCell cell011 = new PdfPCell(new Paragraph("Invoice No:      ",norm_fontEng));
+							PdfPCell cell011 = new PdfPCell(new Paragraph("Invoice No:      ",littleChineseFont));
 							cell011.setMinimumHeight(10f);
 							cell011.setBorder(0);
 							cell011.setBorderWidthTop(0.3f);
 							cell011.setBorderColor(Color.GRAY);
 							table3.addCell(cell011);
 							
-							PdfPCell cell012 = new PdfPCell(new Paragraph(order.getOrderNo().substring(0, 10),norm_fontEng));
+							PdfPCell cell012 = new PdfPCell(new Paragraph(order.getOrderNo().substring(0, 10),littleChineseFont));
 							cell012.setMinimumHeight(10f);
 							cell012.setBorder(0);
 							cell012.setBorderWidthTop(0.3f);
 							cell012.setBorderColor(Color.GRAY);
 							table3.addCell(cell012);					
 							
-							PdfPCell cell053 = new PdfPCell(new Paragraph("Departure Date:       ",norm_fontEng));
+							PdfPCell cell053 = new PdfPCell(new Paragraph("Departure Date:       ",littleChineseFont));
 							cell053.setBorder(0);
 							cell053.setBorderWidthTop(0.3f);
 							cell053.setMinimumHeight(10f);
 							table3.addCell(cell053);
 							
 							SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-							PdfPCell cell054 = new PdfPCell(new Paragraph(simpleDateFormat.format(tourInfoForOrder.getScheduleOfArriveTime()),norm_fontEng));
+							PdfPCell cell054 = new PdfPCell(new Paragraph(simpleDateFormat.format(tourInfoForOrder.getScheduleOfArriveTime()),littleChineseFont));
 							cell054.setBorder(0);
 							cell054.setMinimumHeight(10f);
 							cell054.setBorderWidthTop(0.3f);
@@ -6166,19 +6166,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							orderInfornation.setWidths(wids); 
 							orderInfornation.getDefaultCell().setBorderWidth(0); //不显示边框
 							
-							PdfPCell orderLeft1 = new PdfPCell(new Paragraph("Billing Infomation",norm_fontEng));
+							PdfPCell orderLeft1 = new PdfPCell(new Paragraph("Billing Infomation",littleChineseFont));
 							orderLeft1.setMinimumHeight(10f);
 							orderLeft1.setBorder(0);					
 							orderLeft1.setBorderColor(Color.GRAY);
 							orderInfornation.addCell(orderLeft1);
 							OrdersTotal ot = ordersTotalMapper.findById(order.getOrdersTotalId());
-							PdfPCell orderright1 = new PdfPCell(new Paragraph("Order Summary",norm_fontEng));
+							PdfPCell orderright1 = new PdfPCell(new Paragraph("Order Summary",littleChineseFont));
 							orderright1.setMinimumHeight(10f);
 							orderright1.setBorder(0);
 							orderright1.setBorderColor(Color.GRAY);
 							orderInfornation.addCell(orderright1);
 							
-							PdfPCell orderLeft2 = new PdfPCell(new Paragraph(ot.getContactName(),norm_fontEng));
+							PdfPCell orderLeft2 = new PdfPCell(new Paragraph(ot.getContactName(),littleChineseFont));
 							orderLeft2.setMinimumHeight(10f);
 							orderLeft2.setBorder(0);
 							orderLeft2.setBorderColor(Color.GRAY);
@@ -6186,13 +6186,13 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							
 							ReceivableInfoOfOrder receivable = receivableInfoOfOrderMapper.findByOrderId(order.getId());
 							double cost=receivable.getTotalFeeOfOthers().doubleValue()+order.getPeerUserRate().doubleValue();
-							PdfPCell orderright2 = new PdfPCell(new Paragraph("Cost:"+cost,norm_fontEng));
+							PdfPCell orderright2 = new PdfPCell(new Paragraph("Cost:"+cost,littleChineseFont));
 							orderright2.setMinimumHeight(10f);
 							orderright2.setBorder(0);
 							orderright1.setBorderColor(Color.GRAY);
 							orderInfornation.addCell(orderright2);
 							
-							PdfPCell orderLeft3 = new PdfPCell(new Paragraph(ot.getPostCode(),norm_fontEng));
+							PdfPCell orderLeft3 = new PdfPCell(new Paragraph(ot.getPostCode(),littleChineseFont));
 							orderLeft3.setMinimumHeight(10f);
 							orderLeft3.setBorder(0);
 							orderLeft3.setBorderColor(Color.GRAY);
@@ -6203,19 +6203,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							if(discount!=null&&discount.getDiscountPrice()!=null){
 								dis = discount.getDiscountPrice();
 							}
-							PdfPCell orderright3 = new PdfPCell(new Paragraph("Discount:"+dis,norm_fontEng));
+							PdfPCell orderright3 = new PdfPCell(new Paragraph("Discount:"+dis,littleChineseFont));
 							orderright3.setMinimumHeight(10f);
 							orderright3.setBorder(0);
 							orderright3.setBorderColor(Color.GRAY);
 							orderInfornation.addCell(orderright3);
 							
-							PdfPCell orderLeft4 = new PdfPCell(new Paragraph(ot.getTel(),norm_fontEng));
+							PdfPCell orderLeft4 = new PdfPCell(new Paragraph(ot.getTel(),littleChineseFont));
 							orderLeft4.setMinimumHeight(10f);
 							orderLeft4.setBorder(0);
 							orderLeft4.setBorderColor(Color.GRAY);
 							orderInfornation.addCell(orderLeft4);
 							double total=cost-dis.doubleValue();
-							PdfPCell orderright4 = new PdfPCell(new Paragraph("Order Total:"+total,norm_fontEng));
+							PdfPCell orderright4 = new PdfPCell(new Paragraph("Order Total:"+total,littleChineseFont));
 							orderright4.setMinimumHeight(10f);
 							orderright4.setBorder(0);
 							orderright4.setBorderColor(Color.GRAY);
@@ -6250,21 +6250,21 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							productNo.setBorder(0);
 							productNo.setMinimumHeight(20f);
 							productNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							productNo.addElement(new Phrase(Integer.toString(1),norm_fontEng));
+							productNo.addElement(new Phrase(Integer.toString(1),chineseFont));
 							productionInfo.addCell(productNo);
 							
 							PdfPCell productName = new PdfPCell();
 							productName.setBorder(0);
 							productName.setMinimumHeight(20f);
 							productName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							productName.addElement(new Phrase(tourInfoForOrder.getLineName(),norm_fontEng));
+							productName.addElement(new Phrase(tourInfoForOrder.getLineName(),chineseFont));
 							productionInfo.addCell(productName);
 							
 							PdfPCell sumPeople = new PdfPCell();
 							sumPeople.setBorder(0);
 							sumPeople.setMinimumHeight(20f);
 							sumPeople.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							sumPeople.addElement(new Phrase(Integer.toString(order.getTotalPeople()),norm_fontEng));
+							sumPeople.addElement(new Phrase(Integer.toString(order.getTotalPeople()),chineseFont));
 							productionInfo.addCell(sumPeople);
 							
 							
@@ -6274,7 +6274,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							totalPrice.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 							String tt="";
 							tt=tt+total;
-							totalPrice.addElement(new Phrase(tt,norm_fontEng));
+							totalPrice.addElement(new Phrase(tt,chineseFont));
 							productionInfo.addCell(totalPrice);
 							
 							document.add(productionInfo);
@@ -6326,7 +6326,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							cusNo.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 							cusNo.setMinimumHeight(20f);
 							cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+							cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 							cusData.addCell(cusNo);
 							
 							PdfPCell cusName = new PdfPCell();
@@ -6335,7 +6335,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							cusName.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 							cusName.setMinimumHeight(20f);
 							cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-							cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+							cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 							cusData.addCell(cusName);
 							
 							PdfPCell cusGender = new PdfPCell();
@@ -6350,7 +6350,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							}else if(customersForToatl.get(i).getSex()==2){
 								sexForString = "MALE";
 							}
-							cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+							cusGender.addElement(new Phrase(sexForString,chineseFont));
 							cusData.addCell(cusGender);
 							
 							PdfPCell cusNationality = new PdfPCell();
@@ -6363,7 +6363,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							if(customersForToatl.get(i)!=null){
 									countryName = customersForToatl.get(i).getNationalityOfPassport();
 							}
-							cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+							cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 							cusData.addCell(cusNationality);
 							
 						}
@@ -6413,7 +6413,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											payNo.setBorderWidthBottom(i==payList.size()-1?1.5f:0.3f);
 											payNo.setMinimumHeight(20f);
 											payNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											payNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+											payNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 											paymentData.addCell(payNo);
 											
 											PdfPCell date = new PdfPCell();
@@ -6422,7 +6422,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											date.setBorderWidthBottom(i==payList.size()-1?1.5f:0.3f);
 											date.setMinimumHeight(20f);
 											date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											date.addElement(new Phrase(payList.get(i).getCreateDate()==null?"":simpleDateFormat.format(payList.get(i).getCreateDate()),norm_fontEng));
+											date.addElement(new Phrase(payList.get(i).getCreateDate()==null?"":simpleDateFormat.format(payList.get(i).getCreateDate()),chineseFont));
 											paymentData.addCell(date);
 											
 											PdfPCell description = new PdfPCell();
@@ -6431,7 +6431,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											description.setBorderWidthBottom(i==payList.size()-1?1.5f:0.3f);
 											description.setMinimumHeight(20f);
 											description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											description.addElement(new Phrase(payList.get(i).getPayType(),norm_fontEng));
+											description.addElement(new Phrase(payList.get(i).getPayType(),chineseFont));
 											paymentData.addCell(description);
 											
 											PdfPCell remark = new PdfPCell();
@@ -6440,7 +6440,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											remark.setBorderWidthBottom(i==payList.size()-1?1.5f:0.3f);
 											remark.setMinimumHeight(20f);
 											remark.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											remark.addElement(new Phrase(payList.get(i).getPayInfo(),norm_fontEng));
+											remark.addElement(new Phrase(payList.get(i).getPayInfo(),chineseFont));
 											paymentData.addCell(remark);
 											
 											PdfPCell amount = new PdfPCell();
@@ -6449,7 +6449,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											amount.setBorderWidthBottom(i==payList.size()-1?1.5f:0.3f);
 											amount.setMinimumHeight(20f);
 											amount.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											amount.addElement(new Phrase(payList.get(i).getPayment().toString(),norm_fontEng));
+											amount.addElement(new Phrase(payList.get(i).getPayment().toString(),chineseFont));
 											paymentData.addCell(amount);
 								}
 							}
@@ -6460,7 +6460,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									Paragraph account = new Paragraph("NOTICE INFORMATION",bold_fontEngForTableHead);
 									account.setSpacingBefore(15f);
 									document.add(account);
-									Paragraph accountContent = new Paragraph(tourInfoForOrder.getSpecialRequirements(),norm_fontEng);
+									Paragraph accountContent = new Paragraph(tourInfoForOrder.getSpecialRequirements(),littleChineseFont);
 									document.add(accountContent);
 								}
 								
@@ -6569,18 +6569,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 									Color.BLACK);
 							
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
 									Color.BLACK);
 							//中文超大号
-//							Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+							Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 							//中文斜体(大号)
-//							Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+							Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							//中文斜体(小号)
-//							Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+							Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							
 							document.open();
 							
@@ -6593,19 +6593,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							tableTitleSpace.setWidths(wid11);
 							
 							
-							PdfPCell cell21_11 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell21_11 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell21_11.setBorder(0);
 							cell21_11.setPaddingBottom(30f);
 							cell21_11.setMinimumHeight(10f);
 							tableTitleSpace.addCell(cell21_11);
 							
-							PdfPCell cell21_21 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell21_21 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell21_21.setBorder(0);
 							cell21_21.setPaddingBottom(30f);
 							cell21_21.setMinimumHeight(10f);
 							tableTitleSpace.addCell(cell21_21);
 							
-							PdfPCell cell261 = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell261 = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell261.setBorder(0);
 							cell261.setMinimumHeight(10f);
 							cell261.setPaddingBottom(30f);
@@ -6654,7 +6654,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								table1.setWidths(wid1);
 							}
 							
-							PdfPCell cell21Space = new PdfPCell(new Paragraph("",norm_fontEng));
+							PdfPCell cell21Space = new PdfPCell(new Paragraph("",littleChineseFont));
 							cell21Space.setBorder(0);
 							cell21Space.setMinimumHeight(10f);
 							table1.addCell(cell21Space);
@@ -6677,38 +6677,38 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							}else{
 								logoInDentifying="文景假期";
 							}
-							PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,bold_fontEng));
+							PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,chineseFontBig));
 							cellHead.setBorder(0);
 							cellHead.setMinimumHeight(10f);
 							table13.addCell(cellHead);
 							
-							PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),norm_fontEng));
+							PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),littleChineseFont));
 							cell20.setBorder(0);
 							cell20.setMinimumHeight(10f);
 							table13.addCell(cell20);
 							
-							PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),norm_fontEng));
+							PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),littleChineseFont));
 							cell21.setBorder(0);
 							cell21.setMinimumHeight(10f);
 							table13.addCell(cell21);
 							
-							PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),norm_fontEng));
+							PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),littleChineseFont));
 							cell21_1.setBorder(0);
 							cell21_1.setMinimumHeight(10f);
 							table13.addCell(cell21_1);
 							
-							PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),norm_fontEng));
+							PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),littleChineseFont));
 							cell21_2.setBorder(0);
 							cell21_2.setMinimumHeight(10f);
 							table13.addCell(cell21_2);
 							
-							PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,norm_fontEng));
+							PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,littleChineseFont));
 							cell26.setBorder(0);
 							cell26.setMinimumHeight(10f);
 							table13.addCell(cell26);
 							
 							if(order.getDeptId().equals(Constant.VANCOUVER)){
-								PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,norm_fontEng));
+								PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,littleChineseFont));
 								cell27.setBorder(0);
 								cell27.setMinimumHeight(10f);
 								table13.addCell(cell27);
@@ -6984,7 +6984,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											spaceForPrice.setMinimumHeight(20f);
 											spaceForPrice.setPaddingBottom(15f);
 											spaceForPrice.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											spaceForPrice.addElement(new Phrase("",norm_fontEng));
+											spaceForPrice.addElement(new Phrase("",chineseFont));
 											itemsData.addCell(spaceForPrice);
 											
 											PdfPCell description = new PdfPCell();
@@ -6994,7 +6994,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											description.setMinimumHeight(20f);
 											description.setPaddingBottom(15f);
 											description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											description.addElement(new Phrase(tourInfoForOrder.getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),norm_fontEng));
+											description.addElement(new Phrase(tourInfoForOrder.getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),chineseFont));
 											itemsData.addCell(description);
 											
 											PdfPCell spaceForPrice1 = new PdfPCell();
@@ -7004,7 +7004,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											spaceForPrice1.setMinimumHeight(20f);
 											spaceForPrice1.setPaddingBottom(5f);
 											spaceForPrice1.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											spaceForPrice1.addElement(new Phrase("",norm_fontEng));
+											spaceForPrice1.addElement(new Phrase("",chineseFont));
 											itemsData.addCell(spaceForPrice1);
 											
 											PdfPCell price = new PdfPCell();
@@ -7018,7 +7018,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 												pri = new BigDecimal(0).subtract(pri);
 											}
-											price.addElement(new Phrase(pri.toString(),norm_fontEng));
+											price.addElement(new Phrase(pri.toString(),chineseFont));
 											itemsData.addCell(price);
 											
 											PdfPCell num = new PdfPCell();
@@ -7028,7 +7028,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											num.setBorderWidthBottom(i==orderReceiveItems.size()-1?0.3f:0f);
 											num.setMinimumHeight(20f);
 											num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-											num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+											num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 											itemsData.addCell(num);
 											
 											PdfPCell totalFe = new PdfPCell();
@@ -7051,7 +7051,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 											}
 											Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 											BigDecimal toMount = new BigDecimal(mount);
-											totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+											totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 											itemsData.addCell(totalFe);
 											totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 												}
@@ -7235,7 +7235,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 								}
 							}
 							
-							PdfPCell cellPas=new PdfPCell(new Paragraph("CUSTOMER INFO:\n    "+sBuffer,norm_fontEng));
+							PdfPCell cellPas=new PdfPCell(new Paragraph("CUSTOMER INFO:\n    "+sBuffer,chineseFontBig));
 							cellPas.setBorder(0);
 							cellPas.setBorderWidthBottom(1.5f);
 							cellPas.setPaddingBottom(10f);
@@ -7553,18 +7553,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
-//					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
 							Color.BLACK);
 					
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
 							Color.BLACK);
 					//中文超大号
-//					Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+					Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 					//中文斜体(大号)
-//					Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+					Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 					//中文斜体(小号)
-//					Font  littleChinorm_fontEngnew Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+					Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					
 					document.open();
 					
@@ -7577,19 +7577,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					tableTitleSpace.setWidths(wid11);
 					
 					
-					PdfPCell cell21_11 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell21_11 = new PdfPCell(new Paragraph("",chineseFontBig));
 					cell21_11.setBorder(0);
 					cell21_11.setPaddingBottom(10f);
 					cell21_11.setMinimumHeight(10f);
 					tableTitleSpace.addCell(cell21_11);
 					
-					PdfPCell cell21_21 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell21_21 = new PdfPCell(new Paragraph("",littleChineseFont));
 					cell21_21.setBorder(0);
 					cell21_21.setPaddingBottom(10f);
 					cell21_21.setMinimumHeight(10f);
 					tableTitleSpace.addCell(cell21_21);
 					
-					PdfPCell cell261 = new PdfPCell(new Paragraph("",norm_fontEng));
+					PdfPCell cell261 = new PdfPCell(new Paragraph("",littleChineseFont));
 					cell261.setBorder(0);
 					cell261.setMinimumHeight(10f);
 					cell261.setPaddingBottom(10f);
@@ -7656,38 +7656,38 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					}else{
 						logoInDentifying="文景假期";
 					}
-					PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,bold_fontEng));
+					PdfPCell cellHead = new PdfPCell(new Paragraph(logoInDentifying,chineseFontBig));
 					cellHead.setBorder(0);
 					cellHead.setMinimumHeight(10f);
 					table13.addCell(cellHead);
 					
-					PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),norm_fontEng));
+					PdfPCell cell20 = new PdfPCell(new Paragraph("Agent Name:"+agen.getUsername(),littleChineseFont));
 					cell20.setBorder(0);
 					cell20.setMinimumHeight(10f);
 					table13.addCell(cell20);
 					
-					PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),norm_fontEng));
+					PdfPCell cell21 = new PdfPCell(new Paragraph("Address:"+agen.getAddress(),littleChineseFont));
 					cell21.setBorder(0);
 					cell21.setMinimumHeight(10f);
 					table13.addCell(cell21);
 					
-					PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),norm_fontEng));
+					PdfPCell cell21_1 = new PdfPCell(new Paragraph("Tel:"+agen.getTel(),littleChineseFont));
 					cell21_1.setBorder(0);
 					cell21_1.setMinimumHeight(10f);
 					table13.addCell(cell21_1);
 					
-					PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),norm_fontEng));
+					PdfPCell cell21_2 = new PdfPCell(new Paragraph("Fax:"+agen.getFax(),littleChineseFont));
 					cell21_2.setBorder(0);
 					cell21_2.setMinimumHeight(10f);
 					table13.addCell(cell21_2);
 					
-					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,norm_fontEng));
+					PdfPCell cell26 = new PdfPCell(new Paragraph("Email:"+mailForDept,littleChineseFont));
 					cell26.setBorder(0);
 					cell26.setMinimumHeight(10f);
 					table13.addCell(cell26);
 					
 					if(order.getDeptId().equals(Constant.VANCOUVER)){
-						PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,norm_fontEng));
+						PdfPCell cell27 = new PdfPCell(new Paragraph("LICENSE:"+Constant.VANCOUVER_LICENSE,littleChineseFont));
 						cell27.setBorder(0);
 						cell27.setMinimumHeight(10f);
 						table13.addCell(cell27);
@@ -7929,7 +7929,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 	 								orderReceiveItemNo.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 	 								orderReceiveItemNo.setMinimumHeight(20f);
 	 								orderReceiveItemNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-	 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+	 								orderReceiveItemNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 	 								itemsData.addCell(orderReceiveItemNo);
 									
 									PdfPCell serviceCell = new PdfPCell();
@@ -7938,7 +7938,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									serviceCell.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									serviceCell.setMinimumHeight(20f);
 									serviceCell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									serviceCell.addElement(new Phrase(service,norm_fontEng));
+									serviceCell.addElement(new Phrase(service,chineseFont));
 									itemsData.addCell(serviceCell);
 									
 									PdfPCell description = new PdfPCell();
@@ -7947,7 +7947,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									description.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									description.setMinimumHeight(20f);
 									description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									description.addElement(new Phrase(tourInfoForOrder.getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),norm_fontEng));
+									description.addElement(new Phrase(tourInfoForOrder.getLineName()+" / "+(orderReceiveItems.get(i).getRemark()==null?"":orderReceiveItems.get(i).getRemark()),chineseFont));
 									itemsData.addCell(description);
 									
 									PdfPCell price = new PdfPCell();
@@ -7960,7 +7960,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									if(orderReceiveItems.get(i).getType()==3&&orderReceiveItems.get(i).getOrderType()!=5){
 										pri = new BigDecimal(0).subtract(pri);
 									}
-									price.addElement(new Phrase(pri.toString(),norm_fontEng));
+									price.addElement(new Phrase(pri.toString(),chineseFont));
 									itemsData.addCell(price);
 									
 									PdfPCell num = new PdfPCell();
@@ -7969,7 +7969,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									num.setBorderWidthBottom(i==orderReceiveItems.size()-1?1.5f:0.3f);
 									num.setMinimumHeight(20f);
 									num.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),norm_fontEng));
+									num.addElement(new Phrase("*"+orderReceiveItems.get(i).getItemFeeNum().toString(),chineseFont));
 									itemsData.addCell(num);
 									
 									PdfPCell totalFe = new PdfPCell();
@@ -7991,7 +7991,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									}
 									Integer mount = orderReceiveItems.get(i).getItemFeeNum();
 									BigDecimal toMount = new BigDecimal(mount);
-									totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),norm_fontEng));
+									totalFe.addElement(new Phrase(itemFee.multiply(toMount).toString(),chineseFont));
 									itemsData.addCell(totalFe);
 									totalCostFee = totalCostFee.add(itemFee.multiply(toMount));
 										}
@@ -8166,7 +8166,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusNo.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusNo.setMinimumHeight(20f);
 						cusNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+						cusNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 						cusData.addCell(cusNo);
 						
 						PdfPCell cusName = new PdfPCell();
@@ -8175,7 +8175,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						cusName.setBorderWidthBottom(i==customersForToatl.size()-1?1.5f:0.3f);
 						cusName.setMinimumHeight(20f);
 						cusName.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),norm_fontEng));
+						cusName.addElement(new Phrase(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName(),chineseFont));
 						cusData.addCell(cusName);
 						
 						PdfPCell cusGender = new PdfPCell();
@@ -8190,7 +8190,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						}else if(customersForToatl.get(i).getSex()==2){
 							sexForString = "MALE";
 						}
-						cusGender.addElement(new Phrase(sexForString,norm_fontEng));
+						cusGender.addElement(new Phrase(sexForString,chineseFont));
 						cusData.addCell(cusGender);
 						
 						PdfPCell cusNationality = new PdfPCell();
@@ -8203,7 +8203,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 						if(customersForToatl.get(i)!=null){
 								countryName = customersForToatl.get(i).getNationalityOfPassport();
 						}
-						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,norm_fontEng));
+						cusNationality.addElement(new Phrase(customersForToatl.get(i).getCountryId()==null?"":countryName,chineseFont));
 						cusData.addCell(cusNationality);
 						
 					}
@@ -8266,7 +8266,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									payNo.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									payNo.setMinimumHeight(20f);
 									payNo.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									payNo.addElement(new Phrase(Integer.toString(i+1),norm_fontEng));
+									payNo.addElement(new Phrase(Integer.toString(i+1),chineseFont));
 									paymentData.addCell(payNo);
 									
 									PdfPCell date = new PdfPCell();
@@ -8276,7 +8276,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									date.setMinimumHeight(20f);
 									date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 									SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),norm_fontEng));
+									date.addElement(new Phrase(payCostRecords.get(i).getTime()==null?"":simpleDateFormat.format(payCostRecords.get(i).getTime()),chineseFont));
 									paymentData.addCell(date);
 									
 									PdfPCell description = new PdfPCell();
@@ -8285,7 +8285,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									description.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									description.setMinimumHeight(20f);
 									description.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									description.addElement(new Phrase(payCostRecords.get(i).getItem(),norm_fontEng));
+									description.addElement(new Phrase(payCostRecords.get(i).getItem(),chineseFont));
 									paymentData.addCell(description);
 									
 									PdfPCell remark = new PdfPCell();
@@ -8294,7 +8294,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									remark.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									remark.setMinimumHeight(20f);
 									remark.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),norm_fontEng));
+									remark.addElement(new Phrase(payCostRecords.get(i).getRemark(),chineseFont));
 									paymentData.addCell(remark);
 									
 									PdfPCell amount = new PdfPCell();
@@ -8303,7 +8303,7 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 									amount.setBorderWidthBottom(i==payCostRecords.size()-1?1.5f:0.3f);
 									amount.setMinimumHeight(20f);
 									amount.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),norm_fontEng));
+									amount.addElement(new Phrase(payCostRecords.get(i).getSum().toString(),chineseFont));
 									paymentData.addCell(amount);
 								}
 						}
