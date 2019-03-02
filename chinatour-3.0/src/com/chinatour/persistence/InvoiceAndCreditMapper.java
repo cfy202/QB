@@ -32,5 +32,5 @@ public interface InvoiceAndCreditMapper extends BaseMapper<InvoiceAndCredit, Str
 	List<InvoiceAndCredit> find(InvoiceAndCredit invoiceAndCredit);
 	List<Dept> queryDeptForBegVal(String DeptId);
 	InvoiceAndCredit querySum(InvoiceAndCredit invoiceAndCredit);
-
+	int findCount(InvoiceAndCredit invoiceAndCredit);
 }

@@ -34,6 +34,9 @@ public interface InvoiceAndCreditService extends BaseService<InvoiceAndCredit, S
 	 *根据传入条件查找 
 	 */
 	List<InvoiceAndCredit> find(InvoiceAndCredit invoiceAndCredit);
+	
+	int findCount(InvoiceAndCredit invoiceAndCredit);
+	
 	/**
 	 * 批量审核
 	 * */

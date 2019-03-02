@@ -522,6 +522,27 @@
 				ORDER BY i.BusinessNo DESC
 			</trim>
 	</select>
+	
+   	<select id="findCount" resultType="int" parameterType="com.chinatour.entity.InvoiceAndCredit">
+		SELECT
+			count(*)     
+		FROM invoice_and_credit i,dept d
+		WHERE d.DeptId=i.DeptId
+			AND d.IsDel=0
+			<trim suffixOverrides="AND"> 
+				<if test="billToDeptId!= null">
+					AND i.BillToDeptId=#{billToDeptId}
+				</if>
+				<if test="deptId!=null">
+					AND i.DeptId=#{deptId}
+				</if>
+				<if test="confirmStatus!=null">
+					AND i.ConfirmStatus=#{confirmStatus}
+				</if>
+				AND (i.ConfirmStatus = 'NEW' OR i.ConfirmStatus = 'NEWAUTO')
+			</trim>
+	</select>
+	
 	<select id="queryDeptForBegVal" resultType='com.chinatour.entity.Dept' parameterType="string">
 		SELECT DISTINCT a.* FROM( 
 		SELECT DeptId, DeptName, IsDel FROM Dept WHERE DeptId <![CDATA[<>]]> #{deptId} And DeptId NOT IN(
