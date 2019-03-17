@@ -56,6 +56,7 @@
 							<span style="line-height:40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year:
 								<label>
 									<select name="years" id ="yearChange" class="select2">
+											  <option value="2019">2019</option>
 											  <option value="2018">2018</option>
 											  <option value="2017">2017</option>
 											  <option value="2016">2016</option>

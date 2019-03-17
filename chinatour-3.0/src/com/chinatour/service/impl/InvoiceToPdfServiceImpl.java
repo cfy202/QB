@@ -249,18 +249,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				//中文超大号
-				Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				document.open();
 				
@@ -1201,19 +1201,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				Font bold_fontTitle = new Font(bfEng, 15, Font.NORMAL,
-						Color.GRAY);
+						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -2883,20 +2883,20 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				//中文超大号
-				Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				
 				//中文斜体(大号)
-				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -3325,18 +3325,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				//中文斜体(大号)
-				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 				//中文斜体(小号)
-				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				
 				document.open();
 				// 添加抬头图片
@@ -4177,19 +4177,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 				String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 				BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+				Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 				BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 				//中文斜体(大号)
-				Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
-				Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+				Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
+				Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 				//中文超大号
-				Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+				Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 				//中文斜体(小号)
 				Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-						Color.darkGray);
+						Color.BLACK);
 				
 				document.open();
 				
@@ -5125,18 +5125,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					//中文超大号
-					Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+					Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 					//中文斜体(大号)
-					Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+					Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 					//中文斜体(小号)
-					Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+					Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					
 					document.open();
 					
@@ -6024,18 +6024,18 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							
 							//中文斜体(大号)
-							Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+							Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							//中文斜体(小号)
-							Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+							Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							
 							document.open();
 							// 添加抬头图片
@@ -6568,19 +6568,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							//中文超大号
-							Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+							Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 							//中文斜体(大号)
-							Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+							Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							//中文斜体(小号)
-							Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+							Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							
 							document.open();
 							
@@ -7179,12 +7179,14 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							subTotalData.addCell(toatl3);
 							//document.add(subTotalData);
 							//客人信息
-									List<Customer> customersForToatl = new ArrayList<Customer>();
+//									List<Customer> customersForToatl = new ArrayList<Customer>();
 									List<CustomerOrderRel> customerOrderRelList = customerOrderRelMapper.findCustomerByOrderId(orderId);
 									for(CustomerOrderRel customerOrderRel:customerOrderRelList){
 										if(customerOrderRel.getIsDel()==0||customerOrderRel.getIsDel()==3){
-											Customer customer = customerMapper.findById(customerOrderRel.getCustomerId());
-											customersForToatl.add(customer);
+//											Customer customer = customerMapper.findById(customerOrderRel.getCustomerId());
+//											Customer customer = customerOrderRel.getCustomer();
+//											customersForToatl.add(customer);
+											pasData.add(customerOrderRel.getCustomer().getLastName()+"/"+customerOrderRel.getCustomer().getFirstName()+customerOrderRel.getCustomer().getMiddleName());
 										}
 									}
 							
@@ -7218,11 +7220,11 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 							tabalReamrk.addCell(CellItemFee);
 							
 							//添加客人名字信息
-				              if(customersForToatl!=null){
+				             /* if(customersForToatl!=null){
 				                  for(int i=0;i<customersForToatl.size();i++){
 				                	pasData.add(customersForToatl.get(i).getLastName()+"/"+customersForToatl.get(i).getFirstName()+customersForToatl.get(i).getMiddleName());
 				                  }
-				               }
+				               }*/
 							
 							StringBuffer sBuffer=new StringBuffer();
 							for(int a=0;a<pasData.size();a++){
@@ -7550,19 +7552,19 @@ public class InvoiceToPdfServiceImpl extends BaseServiceImpl<OrdersTotal,String>
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					//中文超大号
-					Font  chineseFontBig = new Font(bfChinese, 12,  Font.NORMAL,Color.darkGray);
+					Font  chineseFontBig = new Font(bfChinese, 12,  Font.BOLD,Color.BLACK);
 					//中文斜体(大号)
-					Font  chineseFont = new Font(bfChinese, 10, Font.ITALIC, Color.BLACK);
+					Font  chineseFont = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 					//中文斜体(小号)
-					Font  littleChineseFont = new Font(bfChinese, 9, Font.ITALIC, Color.BLACK);
+					Font  littleChineseFont = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					
 					document.open();
 					

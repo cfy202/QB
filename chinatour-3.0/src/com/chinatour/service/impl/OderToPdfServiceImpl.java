@@ -220,15 +220,15 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontChinese = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
@@ -866,16 +866,16 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontChinese = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 							Color.RED);   //备注信息标题显示为红色
@@ -1503,19 +1503,19 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 					Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 							Color.RED);   //备注信息显示为红色
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 
 					/**
@@ -2156,7 +2156,7 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 					String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 					BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+					Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 					BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 					Font norm_fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
 					Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
@@ -2164,11 +2164,11 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 					Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
 					Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.NORMAL, Color.BLACK);
 					Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 							Color.RED);   //备注信息显示为红色
 					Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-							Color.darkGray);
+							Color.BLACK);
 					Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 
 					/**
@@ -2774,20 +2774,20 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font norm_fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
-							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 									Color.RED);   //备注信息显示为红色
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 
 							/**
@@ -3474,20 +3474,20 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font norm_fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
-							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 									Color.RED);   //备注信息显示为红色
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 
 							/**
@@ -3687,20 +3687,20 @@ public class OderToPdfServiceImpl implements OrderToPdfService,ServletContextAwa
 							PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(servletContext.getRealPath(destPath)));
 							String utilPath = servletContext.getRealPath("/")+"resources/fonts/font-awesome-4/fonts/";
 							BaseFont bfEng = BaseFont.createFont(utilPath + "calibriz.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.GRAY);
+							Font norm_fontEng = new Font(bfEng, 11, Font.NORMAL, Color.BLACK);
 							BaseFont bfChinese = BaseFont.createFont(utilPath+"SIMYOU.TTF",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 							Font norm_fontChinese = new Font(bfChinese, 10, Font.NORMAL, Color.BLACK);
-							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseGray = new Font(bfChinese, 10, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForRemarks = new Font(bfChinese, 10, Font.NORMAL, Color.RED);  //备注详情显示为红色
 							Font norm_fontChineseForTittle = new Font(bfChinese, 12, Font.BOLD, Color.BLACK);
 							Font norm_fontChineseForHead = new Font(bfChinese, 11, Font.BOLD, Color.BLACK);
-							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.GRAY);
+							Font norm_fontChineseForContent = new Font(bfChinese, 9, Font.BOLD, Color.BLACK);
 							Font bold_fontEng = new Font(bfEng, 12, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font bold_fontEngForRemarks = new Font(bfEng, 12, Font.NORMAL,
 									Color.RED);   //备注信息显示为红色
 							Font bold_fontEngForTableHead = new Font(bfEng, 11, Font.NORMAL,
-									Color.darkGray);
+									Color.BLACK);
 							Font conSpe = new Font(bfChinese, 14, Font.NORMAL, Color.RED);  //苏州联系人红色标注部分
 
 							/**
