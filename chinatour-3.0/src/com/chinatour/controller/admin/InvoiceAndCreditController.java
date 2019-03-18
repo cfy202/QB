@@ -120,29 +120,31 @@ public class InvoiceAndCreditController extends BaseController {
 		//查询其他部门未审核对账
 		InvoiceAndCredit invoiceAndCredit = new InvoiceAndCredit();
 		invoiceAndCredit.setBillToDeptId(dept.getDeptId());
-		List<InvoiceAndCredit> otherinvoiveAndCredit =  invoiceAndCreditService.find(invoiceAndCredit);
+		/*List<InvoiceAndCredit> otherinvoiveAndCredit =  .find(invoiceAndCredit);
 		List<InvoiceAndCredit> InvoiceAndCreditForDis = new ArrayList<InvoiceAndCredit>();
 		for(InvoiceAndCredit InvoiceAndCredit:otherinvoiveAndCredit){
 			if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
 				InvoiceAndCreditForDis.add(InvoiceAndCredit);
-			}
-		}
+			}invoiceAndCreditService
+		}*/
+		int othercount=invoiceAndCreditService.findCount(invoiceAndCredit);
 		//查询本部门未审核对账
 		InvoiceAndCredit invoiceAndCredit1 = new InvoiceAndCredit();
 		invoiceAndCredit1.setDeptId(admin.getDeptId());
-		List<InvoiceAndCredit> invoiveAndCreditList =  invoiceAndCreditService.find(invoiceAndCredit1);
+		/*List<InvoiceAndCredit> invoiveAndCreditList =  invoiceAndCreditService.find(invoiceAndCredit1);
 		List<InvoiceAndCredit> disInvoiceAndCreditForSelf = new ArrayList<InvoiceAndCredit>();
 		for(InvoiceAndCredit InvoiceAndCredit:invoiveAndCreditList){
 			if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
 				disInvoiceAndCreditForSelf.add(InvoiceAndCredit);
 			}
-		}
+		}*/ 
+		int selfcount=invoiceAndCreditService.findCount(invoiceAndCredit1);
 		CurrencyType currency = currencyTypeService.findById(dept.getCurrencyTypeId());
 		model.addAttribute("menuId", "506");
 		model.addAttribute("dept", dept);
 		model.addAttribute("currency", currency);
-		model.addAttribute("disapproveForMount", Integer.toString(InvoiceAndCreditForDis.size()));
-		model.addAttribute("disapproveForMountForSelf", Integer.toString(disInvoiceAndCreditForSelf.size()));
+		model.addAttribute("disapproveForMount", Integer.toString(othercount));
+		model.addAttribute("disapproveForMountForSelf", Integer.toString(selfcount));
 		return BaseTemplateURL + "/invoiceAndCreditList";
 	}
 
@@ -192,7 +194,7 @@ public class InvoiceAndCreditController extends BaseController {
 		model.addAttribute("otherDepts", depts);
 		//查找出最大业务编码
 		model.addAttribute("businessNoMax",invoiceAndCreditService.getBusinessNo(admin.getDeptId()));
-		model.addAttribute("tour",tourService.findAll());
+		//model.addAttribute("tour",tourService.findAll());
 		model.addAttribute("menuId", "506");
 		model.addAttribute("deptId", admin.getDeptId());
 		return BaseTemplateURL + "/addInvoiceAndCredit";
@@ -318,45 +320,48 @@ public class InvoiceAndCreditController extends BaseController {
 		List<Dept> deptList=deptService.findAll();
 		InvoiceAndCredit invoiceAndCredit = new InvoiceAndCredit();
 		invoiceAndCredit.setBillToDeptId(admin.getDeptId());
-		List<InvoiceAndCredit> otherinvoiveAndCredit =  invoiceAndCreditService.find(invoiceAndCredit);
+		/*List<InvoiceAndCredit> otherinvoiveAndCredit =  invoiceAndCreditService.find(invoiceAndCredit);
 		List<InvoiceAndCredit> InvoiceAndCreditForDis = new ArrayList<InvoiceAndCredit>();
 		for(InvoiceAndCredit InvoiceAndCredit:otherinvoiveAndCredit){
 			if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
 				InvoiceAndCreditForDis.add(InvoiceAndCredit);
 			}
-		}
+		}*/
+		int othercount=invoiceAndCreditService.findCount(invoiceAndCredit);
 		
 		for(Dept deptForDis:deptList){
 			InvoiceAndCredit invoiceAndCre = new InvoiceAndCredit();
 			invoiceAndCre.setBillToDeptId(admin.getDeptId());
 			invoiceAndCre.setDeptId(deptForDis.getDeptId());
-			List<InvoiceAndCredit> otherinvoiveAndCreditForOne =  invoiceAndCreditService.find(invoiceAndCre);
+			/*List<InvoiceAndCredit> otherinvoiveAndCreditForOne =  invoiceAndCreditService.find(invoiceAndCre);
 			List<InvoiceAndCredit> InvoiceAndCreditForDi = new ArrayList<InvoiceAndCredit>();
 			for(InvoiceAndCredit InvoiceAndCredit:otherinvoiveAndCreditForOne){
 				if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
 					InvoiceAndCreditForDi.add(InvoiceAndCredit);
 				}
-			}
-			deptForDis.setDeptForInvoiceAndCredit(Integer.toString(InvoiceAndCreditForDi.size()));
+			}*/
+			int deptcount=invoiceAndCreditService.findCount(invoiceAndCre);
+			deptForDis.setDeptForInvoiceAndCredit(Integer.toString(deptcount));
 		}
 		
 		//查询本部门未审核对账
-				InvoiceAndCredit invoiceAndCredit1 = new InvoiceAndCredit();
-				invoiceAndCredit1.setDeptId(admin.getDeptId());
-				List<InvoiceAndCredit> invoiveAndCreditList =  invoiceAndCreditService.find(invoiceAndCredit1);
-				List<InvoiceAndCredit> disInvoiceAndCreditForSelf = new ArrayList<InvoiceAndCredit>();
-				for(InvoiceAndCredit InvoiceAndCredit:invoiveAndCreditList){
-					if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
-						disInvoiceAndCreditForSelf.add(InvoiceAndCredit);
-					}
-				}
+		InvoiceAndCredit invoiceAndCredit1 = new InvoiceAndCredit();
+		invoiceAndCredit1.setDeptId(admin.getDeptId());
+		/*List<InvoiceAndCredit> invoiveAndCreditList =  invoiceAndCreditService.find(invoiceAndCredit1);
+		List<InvoiceAndCredit> disInvoiceAndCreditForSelf = new ArrayList<InvoiceAndCredit>();
+		for(InvoiceAndCredit InvoiceAndCredit:invoiveAndCreditList){
+			if(InvoiceAndCredit.getConfirmStatus().equals("NEW")||InvoiceAndCredit.getConfirmStatus().equals("NEWAUTO")){
+				disInvoiceAndCreditForSelf.add(InvoiceAndCredit);
+			}
+		}*/
+		int selfcount=invoiceAndCreditService.findCount(invoiceAndCredit1);
 		model.addAttribute("menuId", "506");
 		model.addAttribute("deptId", admin.getDeptId());
 		model.addAttribute("elementForDataTable", elementForDataTable);
 		model.addAttribute("deptList", deptList);
 		model.addAttribute("deptFor", dept);
-		model.addAttribute("disapproveForMount", Integer.toString(InvoiceAndCreditForDis.size()));
-		model.addAttribute("disapproveForMountForSelf", Integer.toString(disInvoiceAndCreditForSelf.size()));
+		model.addAttribute("disapproveForMount", Integer.toString(othercount));
+		model.addAttribute("disapproveForMountForSelf", Integer.toString(selfcount));
 		return BaseTemplateURL + "/invoiceAndCreditOtherList";
 	}
 	/**

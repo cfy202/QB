@@ -475,6 +475,11 @@ public class InvoiceAndCreditServiceImpl extends BaseServiceImpl<InvoiceAndCredi
 		return invoiceAndCreditMapper.find(invoiceAndCredit);
 	}
 	@Override
+	public int findCount(InvoiceAndCredit invoiceAndCredit){
+		return invoiceAndCreditMapper.findCount(invoiceAndCredit);
+	}
+	
+	@Override
 	public List<Dept> queryDeptForBegVal(String deptId) {
 		return invoiceAndCreditMapper.queryDeptForBegVal(deptId);
 	}
