@@ -469,7 +469,7 @@
 <script src="[@spring.url '/resources/js/fuelux/loader.js'/]" type="text/javascript"></script>
 <script src="[@spring.url '/resources/js/jquery.parsley/parsley.js'/]" type="text/javascript"></script>
 	<script type="text/javascript">
-		var airline=["CA","MU","CZ","AA","DL","AS","UA","MF","CX","JL","HX","BR","HU","AC","SQ","NZ","QF","OZ","DI","MH","VN","CI","TG","BA","AZ","WS","KE","4O","TK","B6","3U","SQ","EK","CM","PR","NH","CM","US","VS","WN","EY","QR","AF","SU","MCO","LX","DY","VW","SB","AH","KC","BP","NX","SW","PX","GZ","HM","OY","IZ","KK","O6","0B","BW","5Z","WX","KB","BE","HX","MR","JY","RQ","TM","QV","2M","8M","UB","RA","NP","8P","PW","P0","BI","WB","SC","GQ","IE","SZ","2I","5U","DT","TB","TU","U6","UT","VJ","V7","EB","7W","SE","HA","KL","FJ"];
+		var airline=["CA","MU","CZ","AA","DL","AS","UA","MF","CX","JL","HX","BR","HU","AC","SQ","NZ","QF","OZ","DI","MH","VN","CI","TG","BA","AZ","WS","KE","4O","TK","B6","3U","SQ","EK","CM","PR","NH","CM","US","VS","WN","EY","QR","AF","SU","MCO","LX","DY","VW","SB","AH","KC","BP","NX","SW","PX","GZ","HM","OY","IZ","KK","O6","0B","BW","5Z","WX","KB","BE","HX","MR","JY","RQ","TM","QV","2M","8M","UB","RA","NP","8P","PW","P0","BI","WB","SC","GQ","IE","SZ","2I","5U","DT","TB","TU","U6","UT","VJ","V7","EB","7W","SE","HA","KL","FJ","LA"];
 		
 		$("#credit_slider").slider().on("slide",function(e){
 		      $("#credits").html("$" + e.value);
